@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title> Interactions </title>
+    <link href="cs.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script>
+    
+	function getRandomColor() {
+          var letters = '56789ABCDEF';
+          var color = '#';
+          for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 6)];
+          }
+          return color;
+        }
+
+	function getRandomNumberWidth() {
+          var number = '';
+          for (var i = 0; i < 1; i++) {
+            number = Math.random() * 2 + "%";
+          }
+          return number;
+    }
+	
+	function getRandomNumberHeight() {
+          var number = '';
+          for (var i = 0; i < 1; i++) {
+            number = Math.random() * 5 + "%";
+          }
+          return number;
+    }
+		
+        function setRandomColor() {
+            $("th").each(function(i){
+            $(this).css("background-color",getRandomColor());
+          });
+    }
+		
+   $(document).ready(function() {
+
+            $('th').hover(
+				
+               function () {
+                 $(this).css("background-color",getRandomColor());
+				 $(this).css("width",getRandomNumberWidth());
+				 $(this).css("height",getRandomNumberHeight());
+               }, 
+				
+               function () {
+                  $(this).css("background-color",getRandomColor());
+				  $(this).css("width",getRandomNumberWidth());
+				  $(this).css("height",getRandomNumberHeight());
+               }
+            );	
+		
+    });
+   
+   window.onload = setRandomColor;
+
+    </script>
+</head>
+
+<body>
+	
+<table id = "t1">
+<tbody id="tbody">
+  <tr>
+    <th></th>
+    <th></th> 
+    <th></th>
+    <th></th>
+	<th></th> 
+    <th></th>
+    <th></th>
+    <th></th>
+	<th></th>
+    <th></th> 
+    <th></th>
+    <th></th>
+	<th></th> 
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<tr>
+    <th></th>
+    <th></th> 
+    <th></th>
+    <th></th>
+	<th></th> 
+    <th></th>
+    <th></th>
+    <th></th>
+	<th></th>
+    <th></th> 
+    <th></th>
+    <th></th>
+	<th></th> 
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<tr>
+    <th></th>
+    <th></th> 
+    <th></th>
+    <th></th>
+	<th></th> 
+    <th></th>
+    <th></th>
+    <th></th>
+	<th></th>
+    <th></th> 
+    <th></th>
+    <th></th>
+	<th></th> 
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<tr>
+    <th></th>
+    <th></th> 
+    <th></th>
+    <th></th>
+	<th></th> 
+    <th></th>
+    <th></th>
+    <th></th>
+	<th></th>
+    <th></th> 
+    <th></th>
+    <th></th>
+	<th></th> 
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<tr>
+    <th></th>
+    <th></th> 
+    <th></th>
+    <th></th>
+	<th></th> 
+    <th></th>
+    <th></th>
+    <th></th>
+	<th></th>
+    <th></th> 
+    <th></th>
+    <th></th>
+	<th></th> 
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<tr>
+    <th></th>
+    <th></th> 
+    <th></th>
+    <th></th>
+	<th></th> 
+    <th></th>
+    <th></th>
+    <th></th>
+	<th></th>
+    <th></th> 
+    <th></th>
+    <th></th>
+	<th></th> 
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+</table>
+</body>
+</html>
