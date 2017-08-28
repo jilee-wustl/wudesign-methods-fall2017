@@ -2,34 +2,56 @@
 <html>
 <head>
     <title> Interactions </title>
-    <link href="style.css" rel="stylesheet">
+    <link href="cs.css" rel="stylesheet">
+    <script>
+       
+                
+        function getRandomColor() {
+          var letters = '123456789ABCD';
+          var color = '#';
+          for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 6)];
+          }
+          return color;
+        }
+
+        function setRandomColor() {  
+            $("th").each(function(i){
+            $(this).css("background-color",getRandomColor());
+          });
+    }
+
+        window.onload = setRandomColor;
+    </script>
 </head>
 
 <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 <table id="t1">
   <tr>
-    <th style="background-color: red;"></th>
-    <th style="background-color: green;"></th> 
-    <th style="background-color: yellow;"></th>
-    <th style="background-color: blue;"></th>
+    <th></th>
+    <th></th> 
+    <th></th>
+    <th></th>
   </tr>
-  <tr>
-    <th style="background-color: grey;"></th>
-    <th style="background-color: purple;"></th> 
-    <th style="background-color: orange;"></th>
-    <th style="background-color: pink;"></th>
+ <tr>
+    <th></th>
+    <th></th> 
+    <th></th>
+    <th></th>
   </tr>
-  <tr>
-    <th style="background-color: black;"></th>
-    <th style="background-color: red;"></th> 
-    <th style="background-color: blue;"></th>
-    <th style="background-color: orange;"></th>
+ <tr>
+    <th></th>
+    <th></th> 
+    <th></th>
+    <th></th>
   </tr>
-  <tr>
-    <th style="background-color: red;"></th>
-    <th style="background-color: green;"></th> 
-    <th style="background-color: yellow;"></th>
-    <th style="background-color: blue;"></th>
+ <tr>
+    <th></th>
+    <th></th> 
+    <th></th>
+    <th></th>
   </tr>
 </table>
 </body>
