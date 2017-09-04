@@ -1,0 +1,204 @@
+html{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+body {
+    margin: 0 auto;
+    height: 100%;
+    margin: 20px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.btn-clickMe {
+    z-index: 9999;
+    display: flex;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    font-weight: 800;
+    background-color: transparent;
+    border: solid blue 3px;
+    color: blue;
+    padding: 10px;
+    padding-left: 14px;
+    padding-right: 14px;
+}
+
+.btn-clickMe:hover {
+    background-color: blue;
+    color: white;
+   /* background-color: hsla(0, 0%, 90%, 0.4);*/
+    font-weight: 800;
+    border: solid blue 3px;
+    cursor: pointer;
+}
+
+#button-1 {
+    display: flex;
+}
+
+#div-buttons {
+    position: relative;
+    vertical-align: center;
+    text-align: center;
+    display: inline-block;
+    float: left;
+}
+
+.shape {
+    display: none;
+    background-color: blue;
+    position:relative;
+    width: 100px;
+    height: 100px;
+    top: 220px;
+    margin: 30px;
+    justify-content: center;
+    align-items: center; 
+}
+
+#div1 {
+    position: absolute !important;
+    margin: 0 !important;
+}
+
+.div-s {
+    display: none;
+    font-size: 30px;
+    font-weight: 900;
+    font-family: sans-serif;
+    letter-spacing: 0.02em;
+    color: white;
+}
+    
+#currentNumber {
+    display: flex;
+    float: right;
+    font-size: 0.9em;
+    z-index: 99999;
+    letter-spacing: 0.05em;
+    font-weight: 800;
+    border: solid transparent 3px;
+    color: blue;
+    padding: 10px;
+    padding-left: 14px;
+    padding-right: 14px;
+}
+
+#clickAnywhere {
+    display: none;
+    text-align: center;
+    letter-spacing: 0.02em;
+    font-weight: 800;
+    border: solid transparent 3px;
+    color: white;
+    padding: 10px;
+    padding-left: 14px;
+    padding-right: 14px;
+}
+
+span {
+    white-space: pre;
+}
+
+#target {
+    display: none;
+    overflow: hidden;
+    width: 50%;
+    height: 600px;
+    font-size: 2.9em;
+    letter-spacing: 0.05em;
+    font-weight: 900;
+    color: white;
+    text-align: center;
+}
+
+.ripple {
+    width: 100%;
+    height: 100%;
+    display: none;
+    background-color: black;
+}
+
+.canvas{
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -99999;
+}
+
+#waterwave {
+    background: linear-gradient(0deg, #EC6F66 0%, #F3A183 100%);
+}
+
+#particles {
+    background: linear-gradient(0deg, #141E30 0%, #243B55 100%);
+}
+
+#stars {
+    background-color: black;
+}
+
+#lines {
+    background-color: black;
+}
+
+#flurry {
+    background: linear-gradient(0deg, #232526 0%, #414345 100%);
+}
+
+#div2{
+    opacity: 0.3;
+}
+
+#div3{
+    opacity: 0.7;
+}
+
+#div4{
+    opacity: 0.5;
+}
+
+#div5{
+    opacity: 0.3;
+}
+
+
+.numberCount {
+    display: none;
+    font-size: 50px;
+    font-weight: 900;
+    color: blue;
+    position: relative;
+    width: 100%;
+    height: 50%;
+    justify-content: center;
+    align-items: center; 
+}
+
+#flash {
+    display: flex !important;
+}
+
+#image {
+    background-image: url(jpg/nyc1.jpg);
+}
+
+.explode-wrapper {
+    z-index: -99999;
+}
+
+#image2 {
+    background-image: url(jpg/nyc3.jpg);
+    background-size: cover;
+}
+
+.hover{
+    top: 250px;
+}
