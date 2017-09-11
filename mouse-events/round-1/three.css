@@ -20,7 +20,7 @@ a {
 			      
 #info {
 	color: #fff;
-	position: relative;
+	position: absolute;
 	top: 0px;
 	width: 50em;
 	margin: 0 auto -2.1em;
