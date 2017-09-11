@@ -2,7 +2,7 @@
 <html>
 <head>
     
-    <title> 3 </title>
+    <title> 4 </title>
     <link href="three.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="one.js"></script>
@@ -70,8 +70,8 @@
 		var size = new THREE.Vector3( 10, 10, 10 );
 		var up = new THREE.Vector3( 0, 1, 0 );
 		var params = {
-			minScale: 10,
-			maxScale: 10,
+			minScale: 5,
+			maxScale: 30,
 			rotate: true,
 			clear: function() {
 				removeDecals();
@@ -187,8 +187,7 @@
 			var scale = params.minScale + Math.random() * ( params.maxScale - params.minScale );
 			size.set( scale, scale, scale );
 			var material = decalMaterial.clone();
-			//material.color.setHex( Math.random() * 0xffffff );
-			material.color.setHex( 0xffffff );
+			material.color.setHex( Math.random() * 0xffffff );
 			var m = new THREE.Mesh( new THREE.DecalGeometry( mesh, position, orientation, size ), material );
 			decals.push( m );
 			scene.add( m );
