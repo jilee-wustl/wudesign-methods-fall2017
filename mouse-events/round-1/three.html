@@ -71,7 +71,7 @@
 		var up = new THREE.Vector3( 0, 1, 0 );
 		var params = {
 			minScale: 10,
-			maxScale: 20,
+			maxScale: 10,
 			rotate: true,
 			clear: function() {
 				removeDecals();
@@ -156,12 +156,12 @@
 					intersection.intersects = false;
 				}
 			}
-			var gui = new dat.GUI();
-			gui.add( params, 'minScale', 1, 30 );
-			gui.add( params, 'maxScale', 1, 30 );
-			gui.add( params, 'rotate' );
-			gui.add( params, 'clear' );
-			gui.open();
+			//var gui = new dat.GUI();
+			//gui.add( params, 'minScale', 1, 30 );
+			//gui.add( params, 'maxScale', 1, 30 );
+			//gui.add( params, 'rotate' );
+			//gui.add( params, 'clear' );
+			//gui.open();
 			onWindowResize();
 			animate();
 		}
@@ -187,7 +187,8 @@
 			var scale = params.minScale + Math.random() * ( params.maxScale - params.minScale );
 			size.set( scale, scale, scale );
 			var material = decalMaterial.clone();
-			material.color.setHex( Math.random() * 0xffffff );
+			//material.color.setHex( Math.random() * 0xffffff );
+			material.color.setHex( 0xffffff );
 			var m = new THREE.Mesh( new THREE.DecalGeometry( mesh, position, orientation, size ), material );
 			decals.push( m );
 			scene.add( m );
