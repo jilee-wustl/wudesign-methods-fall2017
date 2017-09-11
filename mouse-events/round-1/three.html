@@ -103,7 +103,7 @@
 			geometry.vertices.push( new THREE.Vector3(), new THREE.Vector3() );
 			line = new THREE.Line( geometry, new THREE.LineBasicMaterial( { linewidth: 4 } ) );
 			scene.add( line );
-			//loadLeePerrySmith();
+			loadLeePerrySmith();
 			raycaster = new THREE.Raycaster();
 			mouseHelper = new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 10 ), new THREE.MeshNormalMaterial() );
 			mouseHelper.visible = false;
@@ -165,21 +165,21 @@
 			onWindowResize();
 			animate();
 		}
-		//function loadLeePerrySmith( callback ) {
-		//	var loader = new THREE.JSONLoader();
-		//	loader.load( 'three/examples/obj/leeperrysmith/LeePerrySmith.js', function( geometry ) {
-		//		var material = new THREE.MeshPhongMaterial( {
-		//			specular: 0x111111,
-		//			map: textureLoader.load( 'three/examples/obj/leeperrysmith/Map-COL.jpg' ),
-		//			specularMap: textureLoader.load( 'three/examples/obj/leeperrysmith/Map-SPEC.jpg' ),
-		//			normalMap: textureLoader.load( 'three/examples/obj/leeperrysmith/Infinite-Level_02_Tangent_SmoothUV.jpg' ),
-		//			shininess: 25
-		//		} );
-		//		mesh = new THREE.Mesh( geometry, material );
-		//		scene.add( mesh );
-		//		mesh.scale.set( 10, 10, 10 );
-		//	} );
-		//}
+		function loadLeePerrySmith( callback ) {
+			var loader = new THREE.JSONLoader();
+			loader.load( 'three/examples/obj/leeperrysmith/LeePerrySmith.js', function( geometry ) {
+				var material = new THREE.MeshPhongMaterial( {
+					specular: 0x111111,
+					map: textureLoader.load( 'three/examples/obj/leeperrysmith/Map-COL.jpg' ),
+					specularMap: textureLoader.load( 'three/examples/obj/leeperrysmith/Map-SPEC.jpg' ),
+					normalMap: textureLoader.load( 'three/examples/obj/leeperrysmith/Infinite-Level_02_Tangent_SmoothUV.jpg' ),
+					shininess: 25
+				} );
+				mesh = new THREE.Mesh( geometry, material );
+				scene.add( mesh );
+				mesh.scale.set( 10, 10, 10 );
+			} );
+		}
 		function shoot() {
 			position.copy( intersection.point );
 			orientation.copy( mouseHelper.rotation );
