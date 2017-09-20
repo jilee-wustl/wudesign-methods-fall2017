@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+	<title>6</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+	<script src="build/Tone.js"></script>
+	<script src="scripts/jquery.min.js"></script>
+	<script src="scripts/draggabilly.js"></script>
+	<script src="scripts/StartAudioContext.js"></script>
+	<script src="scripts/Interface.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="./style/examples.css">
+
+	<link rel="stylesheet" type="text/css" href="six.css">
+
+	<script>
+		// jshint ignore: start
+	</script>
+
+</head>
+<body>
+	<style type="text/css">
+		.Dragger#Noise {
+			left: 50%;
+		}
+	</style>
+	<div id="Content">
+		<div id="DragContainer"></div>
+	</div>
+	<script id="ToneCode">
+		//make the noise and connect it to the output
+		
+		$(document).ready(function () {
+		//
+		//		var noise = new Tone.Noise({
+		//	"volume" : getRandomVolume(),
+		//	"type" : getRandomNoise()
+		//}).toMaster();
+		//
+		$('#DragContainer').mousemove(function() {
+			var noise = new Tone.Noise({
+			"volume" : getRandomVolume(),
+			"type" : getRandomNoise()
+		}).toMaster();
+			$(this).css('background-color', getRandomColor());
+			noise.start();
+			Tone.Master.volume.rampTo(0, 0.05);
+		});
+		$('#DragContainer').mouseout(function() {
+			Tone.Master.volume.rampTo(-Infinity, 0.05);
+		});
+		
+		//// GUI //
+		//Interface.Dragger({
+		//	tone : noise,
+		//	y : {
+		//		param : "volume",
+		//		min : -40,
+		//		max : 0
+		//	},
+		//	x : {
+		//		param : "type",
+		//		options : ["white", "brown", "pink"]
+		//	},
+		//	start : function(){
+		//		noise.start();
+		//		Tone.Master.volume.rampTo(0, 0.05);
+		//	},
+		//	end : function(){
+		//		//so it doesn't click
+		//		Tone.Master.volume.rampTo(-Infinity, 0.05);
+		//	}
+		});
+		function getRandomColor() {
+    var letters = '456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 6)];
+    }
+    return color;
+}
+
+function getRandomVolume() {
+    var vol = Math.floor(Math.random() * 10) * -1;
+    return vol;
+}
+
+function getRandomNoise() {
+    var noise = Math.floor(Math.random() * 2);
+		var string = "";
+		
+		if (noise == 0){
+			string = "white";
+		}
+		else if (noise == 1){
+			string = "brown";
+		}
+		else {
+			string = "pink";
+		}
+    
+    return string;
+}
+	</script>
+</body>
+</html>

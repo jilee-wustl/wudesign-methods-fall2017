@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+	<title> 7 </title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	
+	<script src="build/Tone.js"></script>
+	<script src="scripts/jquery.min.js"></script>
+	<script src="scripts/draggabilly.js"></script>
+	<script src="scripts/StartAudioContext.js"></script>
+	<script src="scripts/Interface.js"></script>
+	<script src="https://tonejs.github.io/Logo/build/Logo.js"></script>
+	<script src="scripts/Keyboard.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="./style/examples.css">
+	
+		<link rel="stylesheet" type="text/css" href="seven.css">
+
+
+	<script>
+		// jshint ignore: start
+	</script>
+
+</head>
+<body>
+	<div id = "info">Click</div>
+	<div id="Content" class="FullScreen">
+	</div>
+
+	<script>
+		var synth = new Tone.PolySynth(6, Tone.Synth, {
+			"oscillator" : {
+				"partials" : [0, 2, 3, 4],
+			}
+		}).toMaster();
+		
+		$(document).ready(function () {
+			
+		var notes = ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"]	
+		var i = 0;
+		var val = 0.05;
+		$('body').click(function() {
+				if (i == notes.length) {
+					i = 0;
+					val = 0.1;
+				}
+				synth.triggerAttackRelease(notes[i], 0.5);
+				
+				$(this).css('background-color', "rgba(0,0,0," + val + ")" )
+				
+				$(this).fadeIn();
+				i++;
+				
+				val += 0.15;
+		});
+		});
+
+	</script>
+</body>
+</html>
