@@ -2,43 +2,43 @@
   "entrypoints" : [
     {
       "name" : "1",
-      "file" : "one.html"
+      "file" : "1/one.html"
     },
     {
       "name" : "2",
-      "file" : "two.html"
+      "file" : "2/two.html"
     },
     {
       "name" : "3",
-      "file" : "three.html"
+      "file" : "3/three.html"
     },
     {
       "name" : "4",
-      "file" : "four.html"
+      "file" : "4/four.html"
     },
     {
       "name" : "5",
-      "file" : "five.html"
+      "file" : "5/five.html"
     },
     {
       "name" : "6",
-      "file" : "six.html"
+      "file" : "6/six.html"
     },
     {
       "name" : "7",
-      "file" : "seven.html"
+      "file" : "7/seven.html"
     },
     {
       "name" : "8",
-      "file" : "eight.html"
+      "file" : "8/eight.html"
     },
     {
       "name" : "9",
-      "file" : "nine.html"
+      "file" : "9/nine.html"
     },
     {
       "name" : "10",
-      "file" : "ten.html"
+      "file" : "10/ten.html"
     }
   ]
 }
