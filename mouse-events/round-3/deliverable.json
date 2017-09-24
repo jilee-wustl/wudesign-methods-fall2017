@@ -1,0 +1,44 @@
+{
+  "entrypoints" : [
+    {
+      "name" : "1",
+      "file" : "1/one.html"
+    },
+    {
+      "name" : "2",
+      "file" : "2/two.html"
+    },
+    {
+      "name" : "3",
+      "file" : "3/three.html"
+    },
+    {
+      "name" : "4",
+      "file" : "4/four.html"
+    },
+    {
+      "name" : "5",
+      "file" : "5/five.html"
+    },
+    {
+      "name" : "6",
+      "file" : "6/six.html"
+    },
+    {
+      "name" : "7",
+      "file" : "7/seven.html"
+    },
+    {
+      "name" : "8",
+      "file" : "8/eight.html"
+    },
+    {
+      "name" : "9",
+      "file" : "9/nine.html"
+    },
+    {
+      "name" : "10",
+      "file" : "10/ten.html"
+    }
+  ]
+}

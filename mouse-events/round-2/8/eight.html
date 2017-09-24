@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title> 8 </title>
+    <link href="eight.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="eight.js"></script>
+</head>
+
+<body>
+	<canvas id="c"></canvas>
+	<script>
+		var el = document.getElementById('c');
+		canvas = document.getElementById("c");
+		canvas.width = document.body.clientWidth; //document.width is obsolete
+		canvas.height = document.body.clientHeight; //document.height is obsolete
+		var ctx = el.getContext('2d');
+		var isDrawing;
+		
+		el.onmousedown = function(e) {
+		  isDrawing = true;
+		  ctx.moveTo(e.clientX, e.clientY);
+		};
+		el.onmousemove = function(e) {
+		  if (isDrawing) {
+			var radgrad = ctx.createRadialGradient(
+			  e.clientX,e.clientY,10,e.clientX,e.clientY,20);
+			
+			radgrad.addColorStop(0, '#000');
+			radgrad.addColorStop(0.5, 'rgba(0,0,0,0.5)');
+			radgrad.addColorStop(1, 'rgba(0,0,0,0)');
+			ctx.fillStyle = radgrad;
+			
+			ctx.fillRect(e.clientX-20, e.clientY-20, 40, 40);
+		  }
+		};
+		el.onmouseup = function() {
+		  isDrawing = false;
+		};
+	</script>
+</body>
+</html>
