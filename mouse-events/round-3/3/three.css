@@ -1,0 +1,45 @@
+html{
+    background-color: black;
+}
+
+body {
+	margin: 0px;
+	overflow: hidden;
+	font-family: Monospace;
+	font-size: 13px;
+	text-align: center;
+	font-weight: bold;
+    color: white;
+}
+
+.divs {
+    display: inline-block;
+    float: left;
+    background-color: white;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 150px;
+    height: 150px;
+    opacity: .75;
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+    -webkit-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+    text-decoration: underline;
+    line-height: 150px;
+}
+
+.divs:hover > .divs
+{
+    opacity: 1;
+    -webkit-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+
+}
+
+.divsFullPage {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+}

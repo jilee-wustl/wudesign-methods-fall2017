@@ -6,12 +6,14 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
+	<script src="scripts/p5.js"></script>
 	<script src="build/Tone.js"></script>
 	<script src="scripts/jquery.min.js"></script>
 	<script src="scripts/draggabilly.js"></script>
 	<script src="scripts/StartAudioContext.js"></script>
 	<script src="scripts/Interface.js"></script>
 	<script src="scripts/nexusUI.js"></script>
+	<script src="p5.js-sound-master/lib/p5.sound.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="style/examples.css">
 
@@ -23,160 +25,48 @@
 
 </head>
 <body>	
-	<style type="text/css">
-		canvas {
-			margin-top: 3px;
-		}
-	</style>
-			<div id="canvasHolder">
-					<canvas nx="matrix" style="width: 500px; height: 125px;"></canvas>
-		</div>
-			<div id="Content2" class="FullScreen">
-		</div>
 
-	</div>
 	<div id="Content">
 	</div>	
 	<script>
-		//analyse the frequency/amplitude of the incoming signal
-		//get the waveform data for the audio
-		
-		//setup a polyphonic sampler
-		var keys = new Tone.Players({
-			"A" : "./audio/505/hh.[mp3|ogg]",
-			"C#" : "./audio/505/hho.[mp3|ogg]",
-			"E" : "./audio/505/a.[wav]",
-			"F#" : "./audio/505/b.[wav]",
-		}, {
-			"volume" : 0,
-			"fadeOut" : "64n",
-		}).toMaster();
-		//the notes
-		var noteNames = ["F#", "E", "C#", "A"];
-		var loop = new Tone.Sequence(function(time, col){
-			var column = matrix1.matrix[col];
-			for (var i = 0; i < 4; i++){
-				if (column[i] === 1){
-					keys.get(noteNames[i]).start(time, 0, "32n", 0, 1);
-				}
-			}
-		}, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], "16n");
-		Tone.Transport.start();
-		// GUI //
-		nx.onload = function(){
-			nx.colorize("#0dc")
-			matrix1.col = 16;
-			matrix1.init();
-			matrix1.draw();
-		}
-		Interface.Slider({
-			name : "BPM",
-			min : 50,
-			max : 200,
-			value : Tone.Transport.bpm.value,
-			drag : function(val){
-				Tone.Transport.bpm.value = val;
-			}
-		});
-		Interface.Button({
-			text : "Start",
-			activeText : "Stop",
-			type : "toggle",
-			key : 32, //spacebar
-			start : function(){
-				loop.start();
-			},
-			end : function(){
-				loop.stop();
-			},
-		});
-		Interface.Loader();
-		//$(window).on("resize", function(){
-		//	matrix1.resize($("#Content").width(), 250);
-		//	matrix1.draw();	
-		//});
-		
-		//var player = new Tone.Player({
-		//	"url" : "./audio/FWDL.[mp3|ogg]",
-		//	"loop" : true
-		//}).fan(fft, waveform).toMaster();
-		
-		
-		var fft = new Tone.FFT(32);
-		var waveform = new Tone.Waveform(1024);
+		var noise, env, analyzer;
 
-				//setup a polyphonic sampler
-		var keys = new Tone.Players({
-			"A" : "./audio/505/hh.[mp3|ogg]",
-			"C#" : "./audio/505/hho.[mp3|ogg]",
-			"E" : "./audio/505/a.[wav]",
-			"F#" : "./audio/505/b.[wav]",
-		}, {
-			"volume" : 0,
-			"fadeOut" : "64n",
-		}).fan(fft, waveform).toMaster();
-		
-		//drawing the FFT
-		var fftContext = $("<canvas>",{
-			"id" : "fft"
-		}).appendTo("#Content2").get(0).getContext("2d");
-		function drawFFT(values){
-			fftContext.clearRect(0, 0, canvasWidth, canvasHeight);
-			var barWidth = canvasWidth / fft.size;
-			for (var i = 0, len = values.length; i < len; i++){
-				var x = canvasWidth * (i / len);
-				var y = (values[i] + 140) * 2;
-				fftContext.fillStyle = "rgba(0, 0, 0, " + i/len + ")";
-				fftContext.fillRect(x, canvasHeight - y, barWidth, canvasHeight);
-			}
-		}
-		//the waveform data
-		var waveContext = $("<canvas>", {
-			"id" : "waveform"
-		}).appendTo("#Content").get(0).getContext("2d");
-		var waveformGradient;
-		function drawWaveform(values){
-			//draw the waveform
-			waveContext.clearRect(0, 0, canvasWidth, canvasHeight);
-			waveContext.beginPath();
-			waveContext.lineJoin = "round";
-			waveContext.lineWidth = 6;
-			waveContext.strokeStyle = waveformGradient;
-			waveContext.moveTo(0, (values[0] / 255) * canvasHeight);
-			for (var i = 1, len = values.length; i < len; i++){
-				var val = (values[i] + 1) / 2;
-				var x = canvasWidth * (i / len);
-				var y = val * canvasHeight;
-				waveContext.lineTo(x, y);
-			}
-			waveContext.stroke();
-		}
-		//size the canvases
-		var canvasWidth, canvasHeight;
-		function sizeCanvases(){
-			canvasWidth = $("#fft").width();
-			canvasHeight = $("#fft").height();
-			waveContext.canvas.width = canvasWidth;
-			fftContext.canvas.width = canvasWidth;
-			waveContext.canvas.height = canvasHeight;
-			fftContext.canvas.height = canvasHeight;
-			//make the gradient
-			waveformGradient = waveContext.createLinearGradient(0, 0, canvasWidth, canvasHeight);
-			waveformGradient.addColorStop(0, "#ddd");
-			waveformGradient.addColorStop(1, "#000");
-		}
-		sizeCanvases();
-		$(window).resize(sizeCanvases);
-		function loop(){
-			requestAnimationFrame(loop);
-			//get the fft data and draw it
-			var fftValues = fft.getValue();
-			drawFFT(fftValues);
-			//get the waveform valeus and draw it
-			var waveformValues = waveform.getValue();
-			drawWaveform(waveformValues);
-		}
-		loop();
+function setup() {
+  createCanvas(1800, 400);
+  noise = new p5.Noise("pink"); // other types include 'brown' and 'pink'
+  noise.start();
+
+  // multiply noise volume by 0
+  // (keep it quiet until we're ready to make noise!)
+  noise.amp(0);
+
+  env = new p5.Env();
+  // set attackTime, decayTime, sustainRatio, releaseTime
+  env.setADSR(0.001, 0.1, 0.2, 0.1);
+  // set attackLevel, releaseLevel
+  env.setRange(1, 0);
+
+  // p5.Amplitude will analyze all sound in the sketch
+  // unless the setInput() method is used to specify an input.
+  analyzer = new p5.Amplitude();
+}
+
+function draw() {
+  background(0);
+
+  // get volume reading from the p5.Amplitude analyzer
+  var level = analyzer.getLevel();
+
+  // use level to draw a green rectangle
+  var levelHeight = map(level, 0, .4, 0, height);
+  fill(100,1000,400);
+  rect(0, height, width, - levelHeight);
+}
+
+function mousePressed() {
+  env.play(noise);
+}
+
 	</script>
 </body>
 </html>

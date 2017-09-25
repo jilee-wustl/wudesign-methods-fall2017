@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title> 4 </title>
+    <link href="four.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="four.js"></script>
+</head>
+
+<body>
+	<div id="songs"></div>
+	<script src="p5/p5.js"></script>
+	<script src="play.js"></script>
+	<script src="p5.js-sound-master/lib/p5.sound.js"></script>
+	<script>
+		
+		function f1(songID) {
+			alert(songID);
+			var fileName = 'assets/'+songID+'.mp3';
+
+			//preload(fileName);
+			setup(fileName);
+			mouseClicked();
+			mouseMoved();
+			draw();
+		}
+	</script>
+</body>
+</html>
