@@ -10,14 +10,14 @@
 
 <body>
 	<div id="songs"></div>
-	<script src="p5/p5.js"></script>
+	<script src="../p5/p5.js"></script>
 	<script src="play.js"></script>
-	<script src="p5.js-sound-master/lib/p5.sound.js"></script>
+	<script src="../p5.js-sound-master/lib/p5.sound.js"></script>
 	<script>
 		
 		function f1(songID) {
 			alert(songID);
-			var fileName = 'assets/'+songID+'.mp3';
+			var fileName = '../assets/'+songID+'.mp3';
 
 			//preload(fileName);
 			setup(fileName);

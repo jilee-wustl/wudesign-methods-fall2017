@@ -4,7 +4,7 @@ $(document).ready(function () {
         var $newdiv = $('<div/>', {
             "class": "divs",
 			"id": i,
-            "style" : "background-image: url(images/" + i + ".jpg); display:none;",
+            "style" : "background-image: url(../images/" + i + ".jpg); display:none;",
             "val": i,
         });
         $('#songs').append($newdiv);
