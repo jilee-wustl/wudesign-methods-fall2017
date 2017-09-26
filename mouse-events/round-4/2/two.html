@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title> 2 </title>
+    <link href="two.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="two.js"></script>
+</head>
+
+<body>
+	<div id="songs"></div>
+	<script src="../p5/p5.dom.js"></script>
+	<script src="../p5/p5.js"></script>
+	<script src="play.js"></script>
+	<script src="../p5/p5.sound.js"></script>
+	<script>
+		
+		function f1(songID) {
+			var fileName = '../assets/'+songID+'.mp3';
+
+			//preload(fileName);
+			setup(fileName,songID);
+			mouseClicked();
+			mousePressed();
+			draw();
+		}
+	</script>
+</body>
+</html>

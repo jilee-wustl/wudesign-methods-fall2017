@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title> 6 </title>
+    <link href="six.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="six.js"></script>
+</head>
+
+<body>
+	<div id="songs"></div>
+	<div id="hover">hover</div>
+
+	<script src="p5/p5.js"></script>
+	<script src="play.js"></script>
+	<script src="p5.js-sound-master/lib/p5.sound.js"></script>
+	<script>
+		
+		function f1(songID) {
+			var fileName = 'assets/'+songID+'.mp3';
+
+			//preload(fileName);
+			setup(fileName);
+			mouseClicked();
+			draw();
+		}
+	</script>
+</body>
+</html>
