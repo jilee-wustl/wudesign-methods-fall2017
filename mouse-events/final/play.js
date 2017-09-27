@@ -115,13 +115,19 @@
 					text("move your cursor", width/2, 30);
 			  }
 				else if(soundFile.isLoaded()) {
+					fill(256);
+					textFont("monospace", 13);
+					textAlign(CENTER);
+					text("click anywhere", width/2, height/2-20);
+					text("Turn up the volume for the best experience!", width/2, height/2+20);
+			  }
+				else {
 					colorLoop(7);
 					fill(randR, randG, randB);
 					textFont("monospace", 13);
 					textAlign(CENTER);
-					text("Turn up the Volume for the best experience!", width/2, height/2-20);
-					text("click anywhere", width/2, height/2+20);
-			  }
+					text("loading...", width/2, height/2);
+				}
 
 			  fill(256);
 			  textFont("monospace", 13);
