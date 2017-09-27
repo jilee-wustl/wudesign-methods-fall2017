@@ -1,15 +1,14 @@
 			var soundFile;
 			var fft;		
 			var filter, filterFreq, filterRes;
-			var isOverRectangle = false;
 			var song;
-			var songcolor = 0;
-			var closebutton;
+			var closebutton = false;
 			var randR,randG,randB;
 
 			//sets up canvas
 			function setup(fileName,songID) {
 			  soundFile = loadSound(fileName);
+				console.log(soundFile);
 				song = songID;
 
 			  if(fileName !== undefined) {

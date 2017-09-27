@@ -28,7 +28,7 @@ $(document).ready(function () {
     
     $('.divs').click(function() {
         var x = $(this).val();
-                $('canvas').css('display', 'block');
+        $('canvas').css('display', 'block');
         $('canvas').css('position', 'fixed');
         f1(x);
 
