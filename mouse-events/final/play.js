@@ -114,7 +114,7 @@
 					textAlign(CENTER);
 					text("move your cursor", width/2, 30);
 			  }
-				else {
+				else if(soundFile.isLoaded()) {
 					colorLoop(7);
 					fill(randR, randG, randB);
 					textFont("monospace", 13);
