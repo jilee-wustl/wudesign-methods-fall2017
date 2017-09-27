@@ -31,7 +31,6 @@ $(document).ready(function () {
         $('canvas').css('display', 'block');
         $('canvas').css('position', 'fixed');
         f1(x);
-
     });
 });
 

@@ -7,6 +7,7 @@
 
 			//sets up canvas
 			function setup(fileName,songID) {
+
 			  soundFile = loadSound(fileName);
 				console.log(soundFile);
 				song = songID;
@@ -14,7 +15,7 @@
 			  if(fileName !== undefined) {
 					closebutton = true;
 			  }
-				
+			  
 			  createCanvas(windowWidth, windowHeight);
 			  fill(255, 40, 255);
 							
@@ -35,13 +36,14 @@
 			function mouseClicked() {
 				if (mouseX >= windowWidth-100 && mouseX <= windowWidth && mouseY >= 0 && mouseY <= 50 && closebutton) 
 					{
-					  document.getElementById("defaultCanvas0").style.display = "none";
-				    soundFile.stop();
+					  document.getElementById("defaultCanvas0").style.position = "relative";
+					  soundFile.stop();
 					}
 					
 				else {
+					
 					if(soundFile.isPlaying()){
-							soundFile.stop();
+					     soundFile.stop();
 						}
 					else {
 						soundFile.loop();
@@ -122,6 +124,7 @@
 					text("Turn up the volume for the best experience!", width/2, height/2+20);
 			  }
 				else {
+					
 					colorLoop(7);
 					fill(randR, randG, randB);
 					textFont("monospace", 13);
