@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title> Scrolling - Charette</title>
+	<style>
+		#shape {
+			width: 50px;
+			height: 50px;
+			background: blue;
+			position: fixed;
+			z-index: 100;
+		}
+	</style>
+	
+</head>
+
+<body    data-0="background-image:linear-gradient(0deg, hsl(0, 100%, 100%), hsl(0, 100%, 100%));"
+		 data-51999="background-image:linear-gradient(0deg, hsl(0, 100%, 100%), hsl(0, 100%, 100%));"
+		 data-52000="background-image:linear-gradient(0deg, hsl(100, 100%, 50%), hsl(190, 50%, 50%));"
+		 data-54000="background-image:linear-gradient(3600deg, hsl(360, 100%, 50%), hsl(410, 100%, 50%));">
+	<div id="shape" data-0="left[cos]:10%;top[sin]:10%; border-radius:0px;"
+		 data-20000="border-radius:50px; left:45%;top:45%; background-color:rgb(0,0,0);"
+		 data-30000="background-color:rgb(0,100,255); left:90%;top:90%;"
+		 data-40000="background-color:rgb(100,0,255); left[cos]:10%;top[sin]:10%; width:50px; height:50px;"
+		 data-42000="width:300px; height:300px; border-radius: 200px; left[cos]:10%;top[sin]:10%;"
+		 data-50000="left:90%; top:90%; width:100px; height:100px; background-color:rgb(255,0,255); border: solid cyan 0px;"
+		 data-51000="left[cos]:10%;top[sin]:10%; background-color:rgb(255,0,100); border: solid orange 100px;"
+		 data-52000="background-color:rgb(100,255,100); border: double white 5px;"
+		 data-53000="left[cos]:30%;top[sin]:30%;"
+		 data-54000="left[cos]:20%; top[sin]:50%;"
+		 ></div>
+	<script type="text/javascript" src="skrollr.min.js"></script>
+	<script type="text/javascript">
+	
+	var s = skrollr.init({
+		easing: {
+			sin: function(p) {
+				return (Math.sin(p * Math.PI * 2 - Math.PI/2) + 1) / 2;
+			},
+			cos: function(p) {
+				return (Math.cos(p * Math.PI * 2 - Math.PI/2) + 1) / 2;
+			},
+		},
+		render: function(data) {
+			if(data.curTop === data.maxTop) {
+				this.setScrollTop(0, true);
+			}
+		}
+	});
+	</script>
+</body>
+</html>
+	

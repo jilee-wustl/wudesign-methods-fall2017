@@ -1,0 +1,37 @@
+{
+  "entrypoints" : [
+    {
+      "name" : "1-31",
+      "file" : "one.html"
+    },
+    {
+      "name" : "32",
+      "file" : "two.html"
+    },
+    {
+      "name" : "33-41",
+      "file" : "three.html"
+    },
+    {
+      "name" : "42-50",
+      "file" : "four.html"
+    },
+    {
+      "name" : "51",
+      "file" : "five.html"
+    },
+    {
+      "name" : "52",
+      "file" : "six.html"
+    },
+    {
+      "name" : "53",
+      "file" : "seven.html"
+    },
+    {
+      "name" : "54",
+      "file" : "eight.html"
+    },
+    ]
+  
+}
