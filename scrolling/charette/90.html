@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title> Scrolling - Charette</title>
+
+	<style>
+		div {
+			position: fixed;
+			width:500px;
+			height:500px;
+			background-color: white;
+		}
+	</style>
+</head>
+
+<body data-0="background-color: rgb(0,0,0);" data-1000="background-color: rgb(256,0,256);">
+	<div id="div1" data-0="border-radius:0px; left:0%;" data-1000="border-radius:500px; left:100%"></div>
+	<div id="div2" data-0="border-radius:0px; width:200px; height:200px;" data-1000="border-radius:200px;"></div>
+
+	<script type="text/javascript" src="skrollr.min.js"></script>
+	<script type="text/javascript">
+	
+	var s = skrollr.init();
+	
+	</script>
+</body>
+</html>

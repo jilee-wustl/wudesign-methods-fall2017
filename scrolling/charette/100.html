@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title> Scrolling - Charette</title>
+
+	<style>
+		body {
+			margin: 0;
+		}
+		div {
+			position: fixed;
+			height:100%;
+			background-color: white;
+			float: left;
+			text-align: center;
+			color: white;
+			font-size: 100px;
+		}
+	</style>
+</head>
+
+<body>
+	<div data-0="opacity: 0; width:0%; transform:rotate(0deg); background-image:linear-gradient(0deg, hsl(100, 100%, 50%), hsl(190, 50%, 50%));" data-4000="width:90%; background-image:linear-gradient(600deg, hsl(160, 100%, 50%), hsl(210, 100%, 50%));"
+		 data-8000="width:2%; background-image:linear-gradient(1600deg, hsl(20, 100%, 50%), hsl(40, 100%, 50%));" data-12000="width:70%;" data-16000="transform:rotate(7800deg); width:0%; background-image:linear-gradient(3600deg, hsl(360, 100%, 50%), hsl(410, 100%, 50%));">Hello</div>
+	<div id="div2" data-0="width:80%; background-image:linear-gradient(0deg, hsl(200, 100%, 50%), hsl(70, 50%, 50%));" data-4000="width:10%; background-image:linear-gradient(9000deg, hsl(60, 100%, 50%), hsl(410, 100%, 50%));"
+		 data-8000="width:50%; background-image:linear-gradient(3200deg, hsl(220, 100%, 50%), hsl(3000, 100%, 50%));" data-12000="width:20%;" data-16000="opacity: 1; width:0%; background-image:linear-gradient(3600deg, hsl(360, 100%, 50%), hsl(410, 100%, 50%));">Hello</div>
+
+	<div id="div3" data-0="opacity: 0; transform:rotate(0deg); height:0%; background-image:linear-gradient(0deg, hsl(100, 100%, 50%), hsl(190, 50%, 50%));" data-4000="height:100%; background-image:linear-gradient(600deg, hsl(160, 100%, 50%), hsl(210, 100%, 50%));"
+		 data-8000="height:0%; background-image:linear-gradient(1600deg, hsl(20, 100%, 50%), hsl(40, 100%, 50%));" data-12000=" transform:rotate(0deg); height:100%;" data-16000="height:0%; background-image:linear-gradient(3600deg, hsl(360, 100%, 50%), hsl(410, 100%, 50%));">Hello</div>
+	<div id="div4" data-0="height:100%; background-image:linear-gradient(0deg, hsl(200, 100%, 50%), hsl(70, 50%, 50%));" data-4000="height:0%; background-image:linear-gradient(9000deg, hsl(60, 100%, 50%), hsl(410, 100%, 50%));"
+		 data-8000="opacity: 1; height:100%; background-image:linear-gradient(3200deg, hsl(220, 100%, 50%), hsl(3000, 100%, 50%));" data-12000="height:0%;" data-16000="height:0%; background-image:linear-gradient(3600deg, hsl(360, 100%, 50%), hsl(410, 100%, 50%));">Hello</div>
+
+	<script type="text/javascript" src="skrollr.min.js"></script>
+	<script type="text/javascript">
+	
+	var s = skrollr.init();
+	
+	</script>
+</body>
+</html>
