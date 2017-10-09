@@ -1,216 +1,44 @@
 {
   "entrypoints" : [
     {
-      "name" : "1-31",
-      "file" : "one.html"
+      "name" : "1",
+      "file" : "1.html"
     },
     {
-      "name" : "32",
-      "file" : "two.html"
+      "name" : "2",
+      "file" : "2.html"
     },
     {
-      "name" : "33-41",
-      "file" : "three.html"
+      "name" : "3",
+      "file" : "3.html"
     },
     {
-      "name" : "42-50",
-      "file" : "four.html"
+      "name" : "4",
+      "file" : "4.html"
     },
     {
-      "name" : "51",
-      "file" : "five.html"
+      "name" : "5",
+      "file" : "5.html"
     },
     {
-      "name" : "52",
-      "file" : "six.html"
+      "name" : "6",
+      "file" : "6.html"
     },
     {
-      "name" : "53",
-      "file" : "seven.html"
+      "name" : "7",
+      "file" : "7.html"
     },
     {
-      "name" : "54",
-      "file" : "eight.html"
+      "name" : "8",
+      "file" : "8.html"
     },
     {
-      "name" : "55",
-      "file" : "nine.html"
+      "name" : "9",
+      "file" : "9.html"
     },
     {
-      "name" : "56",
-      "file" : "56.html"
-    },
-    {
-      "name" : "57",
-      "file" : "57.html"
-    },
-    {
-      "name" : "58",
-      "file" : "58.html"
-    },
-    {
-      "name" : "59",
-      "file" : "59.html"
-    },
-    {
-      "name" : "60",
-      "file" : "60.html"
-    },
-    {
-      "name" : "61",
-      "file" : "61.html"
-    },
-    {
-      "name" : "62",
-      "file" : "62.html"
-    },
-    {
-      "name" : "63",
-      "file" : "63.html"
-    },
-    {
-      "name" : "64",
-      "file" : "64.html"
-    },
-    {
-      "name" : "65",
-      "file" : "65.html"
-    },
-    {
-      "name" : "66",
-      "file" : "66.html"
-    },
-    {
-      "name" : "67",
-      "file" : "67.html"
-    },
-    {
-      "name" : "68",
-      "file" : "68.html"
-    },
-    {
-      "name" : "69",
-      "file" : "69.html"
-    },
-    {
-      "name" : "70",
-      "file" : "70.html"
-    },
-     {
-      "name" : "71",
-      "file" : "71.html"
-    },
-    {
-      "name" : "72",
-      "file" : "72.html"
-    },
-    {
-      "name" : "73",
-      "file" : "74.html"
-    },
-    {
-      "name" : "75",
-      "file" : "75.html"
-    },
-    {
-      "name" : "76",
-      "file" : "76.html"
-    },
-     {
-      "name" : "77",
-      "file" : "77.html"
-    },
-    {
-      "name" : "78",
-      "file" : "78.html"
-    },
-    {
-      "name" : "79",
-      "file" : "79.html"
-    },
-    {
-      "name" : "80",
-      "file" : "80.html"
-    },
-    {
-      "name" : "81",
-      "file" : "81.html"
-    },
-     {
-      "name" : "82",
-      "file" : "82.html"
-    },
-    {
-      "name" : "83",
-      "file" : "83.html"
-    },
-    {
-      "name" : "84",
-      "file" : "84.html"
-    },
-    {
-      "name" : "85",
-      "file" : "85.html"
-    },
-    {
-      "name" : "86",
-      "file" : "86.html"
-    },
-     {
-      "name" : "87",
-      "file" : "87.html"
-    },
-    {
-      "name" : "88",
-      "file" : "88.html"
-    },
-    {
-      "name" : "89",
-      "file" : "89.html"
-    },
-    {
-      "name" : "90",
-      "file" : "90.html"
-    },
-    {
-      "name" : "91",
-      "file" : "91.html"
-    },
-     {
-      "name" : "92",
-      "file" : "92.html"
-    },
-    {
-      "name" : "93",
-      "file" : "93.html"
-    },
-    {
-      "name" : "94",
-      "file" : "94.html"
-    },
-    {
-      "name" : "95",
-      "file" : "95.html"
-    },
-    {
-      "name" : "96",
-      "file" : "96.html"
-    },
-     {
-      "name" : "97",
-      "file" : "97.html"
-    },
-    {
-      "name" : "98",
-      "file" : "98.html"
-    },
-    {
-      "name" : "99",
-      "file" : "99.html"
-    },
-    {
-      "name" : "100",
-      "file" : "100.html"
+      "name" : "10",
+      "file" : "10.html"
     }
     ]
 }
