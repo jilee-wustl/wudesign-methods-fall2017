@@ -2,17 +2,43 @@
 <html>
 <head>
     
-    <title> Scrolling - Charette</title>
+    <title> Round-1 </title>
 
 	<style>
+		html {
+			background-color: rgb(242,222,179);
+		}
 		div {
-			position: fixed; left:0; 
+			position: fixed;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			height: 800px;
+			width: 100%;
 		}
 	</style>
 </head>
 
 <body>
-	<div data-0="width:100%; height: 100%; background-color:rgb(255,100,0);" data-100p="width:0%; background-color:rgb(255,0,255);">
+	<div id="div1" data-0="background-image: url(hamburger/1.png); top: -200%;" data-2000="top: 0%;">
+	</div>
+	<div id="div2" data-0="background-image: url(hamburger/2.png); top: -200%;" data-2000="top: -200%;"
+		 data-4000="top: 0%;">
+	</div>
+	<div id="div3" data-0="background-image: url(hamburger/3.png); top: -200%;" data-4000="top: -200%;"
+		 data-6000="top: 0%;">
+	</div>
+	<div id="div4" data-0="background-image: url(hamburger/4.png); top: -200%;" data-6000="top: -200%;"
+		 data-8000="top: 0%;">
+	</div>
+	<div id="div5" data-0="background-image: url(hamburger/5.png); top: -200%;" data-8000="top: -200%;"
+		 data-10000="top: 0%;">
+	</div>
+	<div id="div6" data-0="background-image: url(hamburger/6.png); top: -200%;" data-10000="top: -200%;"
+		 data-12000="top: 0%;">
+	</div>
+	<div id="div7" data-0="background-image: url(hamburger/7.png); top: -200%;" data-12000="top: -200%;"
+		 data-14000="top: 0%;">
 	</div>
 	
 	<script type="text/javascript" src="skrollr.min.js"></script>
