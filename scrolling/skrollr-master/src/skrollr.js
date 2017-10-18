@@ -219,6 +219,8 @@
 
 			return 1 - Math.abs(3 * Math.cos(p * a * 1.028) / a);
 		}
+		
+		
 	};
 
 	/**
