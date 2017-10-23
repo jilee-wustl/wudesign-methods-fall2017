@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title> Round-2 </title>
+
+	<style>
+		html {
+			background-color: rgb(242,222,179);
+		}
+		div {
+			position: fixed;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			height: 800px;
+			width: 100%;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="div1" data-0="background-image: url(hamburger/1.png); bottom[WTF]: 100%;" data-2000="bottom: 0%;">
+	</div>
+	<div id="div2" data-0="background-image: url(hamburger/2.png); bottom[WTF]: 100%;" data-2000="bottom[WTF]: 100%;"
+		 data-4000="bottom: 0%;">
+	</div>
+	<div id="div3" data-0="background-image: url(hamburger/3.png); bottom[WTF]: 100%;" data-4000="bottom[WTF]: 100%;"
+		 data-6000="bottom: 0%;">
+	</div>
+	<div id="div4" data-0="background-image: url(hamburger/4.png); bottom[WTF]: 100%;" data-6000="bottom[WTF]: 100%;"
+		 data-8000="bottom: 0%;">
+	</div>
+	<div id="div5" data-0="background-image: url(hamburger/5.png); bottom[WTF]: 100%;" data-8000="bottom[WTF]: 100%;"
+		 data-10000="bottom: 0%;">
+	</div>
+	<div id="div6" data-0="background-image: url(hamburger/6.png); bottom[WTF]: 100%;" data-10000="bottom[WTF]: 100%;"
+		 data-12000="bottom: 0%;">
+	</div>
+	<div id="div7" data-0="background-image: url(hamburger/7.png); bottom[WTF]: 100%;" data-12000="bottom[WTF]: 100%;"
+		 data-14000="bottom: 0%;">
+	</div>
+	
+	<script type="text/javascript" src="skrollr.min.js"></script>
+	<script type="text/javascript">
+	var s = skrollr.init({
+		easing: {
+			WTF: Math.random,
+			inverted: function(p) {
+				return 1 - p;
+			}
+		}
+	});
+	</script>
+</body>
+</body>
+</html>
