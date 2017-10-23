@@ -190,7 +190,7 @@
 			return p * p;
 		},
 		cubic: function(p) {
-			return p * p * p * p * p * p * p * p * p * p;
+			return p * p * p;
 		},
 		four: function(p) {
 			return p * p * p * p;

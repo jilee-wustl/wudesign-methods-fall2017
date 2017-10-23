@@ -5,7 +5,7 @@
       "file" : "1.html"
     },
     {
-      "name" : "p * 10",
+      "name" : "cubic",
       "file" : "2.html"
     },
     {
@@ -17,15 +17,15 @@
       "file" : "4.html"
     },
     {
-      "name" : "5",
+      "name" : "inverted + opacity",
       "file" : "5.html"
     },
     {
-      "name" : "6",
+      "name" : "bounce + rotate",
       "file" : "6.html"
     },
     {
-      "name" : "7",
+      "name" : "bounce after each element",
       "file" : "7.html"
     },
     {

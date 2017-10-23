@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title> Round-2 </title>
+
+	<style>
+		html {
+			background-color: rgb(242,222,179);
+		}
+		
+		div {
+			position: fixed;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			height: 800px;
+			width: 100%;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="div1" data-0="opacity: 1; background-image: url(hamburger/7.png); bottom[inverted]: 100%;" data-2000="opacity: 0; bottom: 0%;">
+	</div>
+	<div id="div2" data-0="background-image: url(hamburger/6.png); bottom: 0%; opacity: 1;" data-2000="opacity: 1; bottom: 0%;"
+		 data-4000="opacity: 0; bottom[inverted]: 100%;">
+	</div>
+	<div id="div3" data-0="background-image: url(hamburger/5.png); bottom: 0%;  opacity: 1;" data-4000="opacity: 1; bottom: 0%; "
+		 data-6000="opacity: 0; bottom[inverted]: 100%; ">
+	</div>
+	<div id="div4" data-0="background-image: url(hamburger/4.png); bottom: 0%;  opacity: 1;" data-6000="opacity: 1; bottom: 0%; "
+		 data-8000="opacity: 0; bottom[inverted]: 100%; ">
+	</div>
+	<div id="div5" data-0="background-image: url(hamburger/3.png); bottom: 0%;  opacity: 1;" data-8000="opacity: 1; bottom: 0%; "
+		 data-10000="opacity: 0; bottom[inverted]: 100%; ">
+	</div>
+	<div id="div6" data-0="background-image: url(hamburger/2.png); bottom: 0%;  opacity: 1;" data-10000="opacity: 1; bottom: 0%; "
+		 data-12000="opacity: 0; bottom[inverted]: 100%; ">
+	</div>
+	<div id="div7" data-0="background-image: url(hamburger/1.png); bottom: 0%;  opacity: 1;" data-12000="opacity: 1; bottom: 0%; "
+		 data-14000="opacity: 0; bottom[inverted]: 100%; ">
+	</div>
+	
+	<script type="text/javascript" src="skrollr.min.js"></script>
+	<script type="text/javascript">
+	var s = skrollr.init({
+		easing: {
+			wtf: Math.random,
+			inverted: function(p) {
+				return 1 - p;
+			}
+		}
+	});
+	</script>
+</body>
+</body>
+</html>
