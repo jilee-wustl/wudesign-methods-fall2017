@@ -1,19 +1,19 @@
 {
   "entrypoints" : [
     {
-      "name" : "1",
+      "name" : "bounce",
       "file" : "1.html"
     },
     {
-      "name" : "2",
+      "name" : "p * 10",
       "file" : "2.html"
     },
     {
-      "name" : "3",
+      "name" : "bounce + scale",
       "file" : "3.html"
     },
     {
-      "name" : "4",
+      "name" : "bounce + height + background easing",
       "file" : "4.html"
     },
     {
