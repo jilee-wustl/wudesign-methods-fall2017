@@ -221,7 +221,7 @@
 				return 1;
 			}
 
-			return 1 - Math.abs(3 * Math.cos(p * a * 1.028) / (Math.pow(a,4)));
+			return 1 - Math.abs(3 * Math.cos(p * a * 1.028) / (Math.pow(a,2)));
 		}
 		
 		
