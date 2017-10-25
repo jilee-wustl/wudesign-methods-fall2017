@@ -1,43 +1,43 @@
 {
   "entrypoints" : [
     {
-      "name" : "1",
+      "name" : "added hamburger",
       "file" : "1.html"
     },
     {
-      "name" : "2",
+      "name" : "fixed image & background color & bounce",
       "file" : "2.html"
     },
     {
-      "name" : "3",
+      "name" : "added french fries box",
       "file" : "3.html"
     },
     {
-      "name" : "4",
+      "name" : "fixed bounce",
       "file" : "4.html"
     },
     {
-      "name" : "5",
+      "name" : "added 1/3 french fries",
       "file" : "5.html"
     },
     {
-      "name" : "6",
+      "name" : "added 2/3 french fries",
       "file" : "6.html"
     },
     {
-      "name" : "7",
+      "name" : "added 3/3 french fries",
       "file" : "7.html"
     },
     {
-      "name" : "8",
+      "name" : "added cup + straw",
       "file" : "8.html"
     },
     {
-      "name" : "9",
+      "name" : "divs moved",
       "file" : "9.html"
     },
     {
-      "name" : "10",
+      "name" : "pattern",
       "file" : "10.html"
     }
     ]

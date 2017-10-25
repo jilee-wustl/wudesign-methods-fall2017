@@ -2,45 +2,94 @@
 <html>
 <head>
     
-    <title> Round-1 </title>
+    <title> Round-3 </title>
 
 	<style>
 		html {
-			background-color: rgb(242,222,179);
+			background-color: rgb(255,178,18);
 		}
-		div {
-			position: fixed;
+		
+		body {
+			margin: 50px;
+		}
+		
+		.div1 {
+			position: absolute;
 			background-position: center;
 			background-repeat: no-repeat;
-			background-size: cover;
-			height: 800px;
-			width: 100%;
+			background-size: contain;
+			height: 100%;
+			width: 150px;
 		}
+		
+		#hamburger {
+			position: fixed;
+			height: 100%;
+			width: 150px;
+		}
+		
+		#fries {
+			bottom: 0%;
+			position: fixed;
+			left: 300px;
+			height: 100%;
+			width: 150px;
+		}
+		
 	</style>
 </head>
 
 <body>
-	<div id="div1" data-0="background-image: url(hamburger/1.png); bottom[bounce]: 100%;" data-2000="bottom: 0%;">
+	<div id="hamburger" data-0="bottom: 0%;" data-2999="bottom: 0%;" data-3000="bottom[bounce]: 0.1%;" data-3300="bottom: 0%;"
+		 data-3600="bottom[bounce]: 0.1%;" data-3900="bottom: 0%;"
+		 data-5000="bottom[bounce]: 0.1%;" data-5300="bottom: 0%;"
+		 data-5600="bottom[bounce]: 0.1%;" data-5900="bottom: 0%;"
+		 data-7000="bottom[bounce]: 0.1%;" data-7300="bottom: 0%;"
+		 data-7600="bottom[bounce]: 0.1%;" data-7900="bottom: 0%;"
+		 data-9000="bottom[bounce]: 0.1%;" data-9300="bottom: 0%;"
+		 data-9600="bottom[bounce]: 0.1%;" data-9900="bottom: 0%;"
+		 data-11000="bottom[bounce]: 0.1%;" data-11300="bottom: 0%;"
+		 data-11600="bottom[bounce]: 0.1%;" data-11900="bottom: 0%;"
+		 data-13000="bottom[bounce]: 0.1%;" data-13300="bottom: 0%;"
+		 data-13600="bottom[bounce]: 0.1%;" data-13900="bottom: 0%;"
+		 data-15000="bottom[bounce]: 0.1%;" data-15300="bottom: 0%;"
+		 data-15600="bottom[bounce]: 0.1%;" data-15900="bottom: 0%;"
+		 data-17000="bottom[bounce]: 0.1%;" data-17300="bottom: 0%;"
+		 data-17600="bottom[bounce]: 0.1%;" data-17900="bottom: 0%;">
+		<div class="div1" data-0="background-image: url(hamburger/1.png); bottom[bounce]: 80%;" data-2000="bottom: 0%;">
+		</div>
+		<div class="div1" data-0="background-image: url(hamburger/2.png); bottom[bounce]: 80%;" data-2000="bottom[bounce]: 80%;"
+			 data-4000="bottom: 0%;">
+		</div>
+		<div class="div1" data-0="background-image: url(hamburger/3.png); bottom[bounce]: 80%;" data-4000="bottom[bounce]: 80%;"
+			 data-6000="bottom: 0%;">
+		</div>
+		<div class="div1" data-0="background-image: url(hamburger/4.png); bottom[bounce]: 80%;" data-6000="bottom[bounce]: 80%;"
+			 data-8000="bottom: 0%;">
+		</div>
+		<div class="div1" data-0="background-image: url(hamburger/5.png); bottom[bounce]: 80%;" data-8000="bottom[bounce]: 80%;"
+			 data-10000="bottom: 0%;">
+		</div>
+		<div class="div1" data-0="background-image: url(hamburger/6.png); bottom[bounce]: 80%;" data-10000="bottom[bounce]: 80%;"
+			 data-12000="bottom: 0%;">
+		</div>
+		<div class="div1" data-0="background-image: url(hamburger/7.png); bottom[bounce]: 80%;" data-12000="bottom[bounce]: 80%;"
+			 data-14000="bottom: 0%;">
+		</div>
+		<div class="div1" data-0="background-image: url(hamburger/8.png); bottom[bounce]: 80%;" data-14000="bottom[bounce]: 80%;"
+			 data-16000="bottom: 0%;">
+		</div>
+		<div class="div1" data-0="background-image: url(hamburger/9.png); bottom[bounce]: 80%;" data-16000="bottom[bounce]: 80%;"
+			 data-18000="bottom: 0%;">
+		</div>
 	</div>
-	<div id="div2" data-0="background-image: url(hamburger/2.png); bottom[bounce]: 100%;" data-2000="bottom[bounce]: 100%;"
-		 data-4000="bottom: 0%;">
+		<div id="fries">
+		<div class="div1" data-0="background-image: url(fries/back.png); bottom[bounce]: 80%; z-index:-999;" data-20000="bottom[bounce]: 80%;" data-24000="bottom[bounce]: 0%;">
+		</div>
+		<div class="div1" data-0="background-image: url(fries/front.png); opacity:0; bottom:0%; z-index:999;" data-23999="opacity: 0;"
+			 data-24000="opacity:1;">
+		</div>
 	</div>
-	<div id="div3" data-0="background-image: url(hamburger/3.png); bottom[bounce]: 100%;" data-4000="bottom[bounce]: 100%;"
-		 data-6000="bottom: 0%;">
-	</div>
-	<div id="div4" data-0="background-image: url(hamburger/4.png); bottom[bounce]: 100%;" data-6000="bottom[bounce]: 100%;"
-		 data-8000="bottom: 0%;">
-	</div>
-	<div id="div5" data-0="background-image: url(hamburger/5.png); bottom[bounce]: 100%;" data-8000="bottom[bounce]: 100%;"
-		 data-10000="bottom: 0%;">
-	</div>
-	<div id="div6" data-0="background-image: url(hamburger/6.png); bottom[bounce]: 100%;" data-10000="bottom[bounce]: 100%;"
-		 data-12000="bottom: 0%;">
-	</div>
-	<div id="div7" data-0="background-image: url(hamburger/7.png); bottom[bounce]: 100%;" data-12000="bottom[bounce]: 100%;"
-		 data-14000="bottom: 0%;">
-	</div>
-	
 	<script type="text/javascript" src="skrollr.min.js"></script>
 	<script type="text/javascript">
 	var s = skrollr.init({
