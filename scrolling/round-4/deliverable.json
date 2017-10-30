@@ -1,0 +1,40 @@
+{
+  "entrypoints" : [
+    {
+      "name" : "added intro",
+      "file" : "1.html"
+    },
+    {
+      "name" : "added tray",
+      "file" : "2.html"
+    },
+    {
+      "name" : "added hamburger",
+      "file" : "3.html"
+    },
+    {
+      "name" : "added fries",
+      "file" : "4.html"
+    },
+    {
+      "name" : "added ketchup",
+      "file" : "5.html"
+    },
+    {
+      "name" : "added sprite",
+      "file" : "6.html"
+    },
+    {
+      "name" : "tray move",
+      "file" : "7.html"
+    },
+    {
+      "name" : "frame + end",
+      "file" : "8.html"
+    },
+     {
+      "name" : "without frame",
+      "file" : "9.html"
+    },
+    ]
+}
