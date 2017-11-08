@@ -1,0 +1,41 @@
+html{
+    background-color: black;
+}
+
+body {
+	margin: 0px auto;
+    font-family: 'PT Sans', sans-serif;
+	font-size: 50pt;
+    font-weight: bold;
+    color: white;
+    align-content: center;
+    display: block;
+    padding: 100px;
+}
+
+
+div {
+    position: absolute;
+    height: 500px;
+    text-align: left;
+    vertical-align: middle;
+    display: inline-block;
+    height: 10em;
+}
+
+div p {
+    margin: 0;
+}
+
+#tomorrow {
+    display: none;
+}
+
+#change {
+    padding-left: 10px;
+    vertical-align: middle;
+    padding-bottom: 5px;
+    border-bottom: solid 10px;
+    border-bottom-color: white;
+}
+

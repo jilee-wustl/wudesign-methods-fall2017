@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Charette</title>
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+    <link href="style4.css" rel="stylesheet">
+</head>
+<body>
+	<div id="today">
+		<p>Warmest Temperature 
+			<br>
+			<span id="warmest"> </span>
+			<br>
+			<span id="warmestday"> </span>
+		</p>
+	</div>	
+	<div id="tomorrow">
+		<p>Coolest Temperature
+			<br>
+			<span id="coolest"> </span>
+			<br>
+			<span id="coolestday"> </span>
+		</p>
+	</div>
+</div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script>
+
+	jQuery(function($){
+
+      var dataUrl = 'https://gist.githubusercontent.com/abesiemsen/916d376e77b659a793d9d8843e3287ee/raw/10-day-forecast.json';
+			
+      jQuery.getJSON(dataUrl, function(forecastData) {
+        
+        //console.log(forecastData);
+
+		var month = forecastData.map(function(day){
+          return day.date.month;
+        });
+		
+		var day = forecastData.map(function(day){
+          return day.date.day;
+        });
+		
+        var year = forecastData.map(function(day){
+          return day.date.year;
+        });
+		
+		var conditions = forecastData.map(function(day){
+          return day.conditions;
+        });
+		
+		var weekday = forecastData.map(function(day){
+          return day.date.weekday;
+        });
+		
+		var monthName = forecastData.map(function(day){
+          return day.date.monthname;
+        });
+		
+		var fahrenheit = forecastData.map(function(day){
+          return day.high.fahrenheit;
+        });
+		
+		var fahrenheitLow = forecastData.map(function(day){
+          return day.low.fahrenheit;
+        });
+		
+		var avehumidity = forecastData.map(function(day){
+          return day.avehumidity;
+        });
+		
+
+	    var date = [];
+		var temp = [];
+		var tempDay = [];
+		var tem = [];
+		var tempLow = [];
+		var cond = [];
+		var humidity = [];
+		var i;
+		var c;
+		
+		for (i = 0; i<10; i++) {
+			tempDay[i] = [fahrenheit[i] + "°F", fahrenheit[i], monthName[i] + " " + day[i] + ", " + year[i]];
+			temp[i] = fahrenheit[i] + "°F";
+			tempLow[i] = fahrenheitLow[i] + "°F";
+			tem[i] = fahrenheit[i];
+			humidity[i] = avehumidity[i];
+			cond[i] = conditions[i];
+			date[i] = monthName[i] + " " + day[i] + ", " + year[i];
+		}
+		  $("#coolest").text(tempDay[0][0]).fadeIn(400);
+		  $("#warmest").text(tempDay[9][0]).fadeIn(400);
+		   $("#coolestday").text(tempDay[0][2]).fadeIn(400);
+		  $("#warmestday").text(tempDay[9][2]).fadeIn(400);
+		  console.log(tempDay);
+		tempDay.sort(function(a, b)
+			{
+				// a and b will here be two objects from the array
+				// thus a[1] and b[1] will equal the names
+			
+				// if they are equal, return 0 (no sorting)
+				if (a[1] == b[1]) { return 0; }
+				if (a[1] > b[1])
+				{
+					// if a should come after b, return 1
+					return 1;
+				}
+				else
+				{
+					// if b should come after a, return -1
+					return -1;
+				}
+			});
+		
+      });
+			
+		});
+
+	</script>
+</body>
+</html>
+
+

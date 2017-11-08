@@ -1,0 +1,36 @@
+html{
+    background-color: black;
+}
+
+body {
+	margin: 0px auto;
+    font-family: 'PT Sans', sans-serif;
+	font-size: 20pt;
+    font-weight: bold;
+    color: white;
+    align-content: center;
+    display: block;
+}
+
+#today {
+    height: 500px;
+    text-align: left;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+#today p {
+    width: 400px;
+    float: left;
+    margin: 12px;
+    padding: 10px;
+}
+
+#change {
+    padding-left: 10px;
+    vertical-align: middle;
+    padding-bottom: 5px;
+    border-bottom: solid 10px;
+    border-bottom-color: white;
+}
+

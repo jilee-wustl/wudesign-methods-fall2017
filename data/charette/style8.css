@@ -1,0 +1,85 @@
+html{
+    background-color: black;
+}
+
+body {
+	margin: 0px auto;
+    font-family: 'PT Sans', sans-serif;
+	font-size: 20pt;
+    font-weight: bold;
+    color: white;
+    align-content: center;
+    display: block;
+    padding: 50px;
+}
+
+div {
+    position: absolute;
+    width: 10px;
+    height: 0.5px;
+    text-align: left;
+    vertical-align: middle;
+    display: block;
+    padding: 2px;
+    background-color: white;
+    }
+
+div p {
+    margin: 0;
+}
+
+#change {
+    padding-left: 10px;
+    vertical-align: middle;
+    padding-bottom: 5px;
+    border-bottom: solid 10px;
+    border-bottom-color: white;
+}
+
+#warmest {
+    color: orange;
+}
+
+#coolest {
+    color: blue;
+}
+
+#a {
+    left: 5%;
+}
+
+#b {
+    left: 15%;
+}
+
+#c {
+    left: 25%;
+}
+
+#d{
+    left: 35%;
+}
+
+#e {
+    left: 45%;
+}
+
+#f {
+    left: 55%;
+}
+
+#g {
+    left: 65%;
+}
+
+#h {
+    left: 75%;
+}
+
+#i {
+    left: 85%;
+}
+
+#j {
+    left: 95%;
+}

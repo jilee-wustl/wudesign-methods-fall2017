@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Charette</title>
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<div id="today">
+		<p><span id="date"> </span> <br> <span id="temperature"> </span> <br> <span id="description"> </span> </p>
+	</div>	
+
+</div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script>
+
+	jQuery(function($){
+
+      var dataUrl = 'https://gist.githubusercontent.com/abesiemsen/916d376e77b659a793d9d8843e3287ee/raw/10-day-forecast.json';
+			
+      jQuery.getJSON(dataUrl, function(forecastData) {
+        
+        //console.log(forecastData);
+
+		var month = forecastData.map(function(day){
+          return day.date.month;
+        });
+		
+		var day = forecastData.map(function(day){
+          return day.date.day;
+        });
+		
+        var year = forecastData.map(function(day){
+          return day.date.year;
+        });
+		
+		var conditions = forecastData.map(function(day){
+          return day.conditions;
+        });
+		
+		var weekday = forecastData.map(function(day){
+          return day.date.weekday;
+        });
+		
+		var monthName = forecastData.map(function(day){
+          return day.date.monthname;
+        });
+		
+		var fahrenheit = forecastData.map(function(day){
+          return day.high.fahrenheit;
+        });
+		
+        console.log(month[0]);
+		console.log(monthName[0]);
+
+        console.log(day[0]);
+        console.log(year[0]);
+		console.log(conditions[0]);
+		console.log(weekday[0]);
+		console.log(fahrenheit[0]);
+		
+
+	    var date = [];
+		var temp = [];
+		var perfectday = ["Perfect day to get married","Perfect day to bake a pretty cake", "Perfect day to play baseball", "Perfect day to be on the beach", "Perfect day to go to Disneyland", "Perfect day to be lazy",  "Perfect day to enjoy Los Angeles", "Perfect day to go fishing"];
+		var i;
+		for (i = 0; i<10; i++) {
+			temp[i] = fahrenheit[i] + "°F";
+			date[i] = monthName[i] + " " + day[i] + ", " + year[i];
+		}
+		
+		count = -1;
+		setInterval(function () {
+			count++;
+		$("#date").fadeOut(400, function () {
+		  $(this).text(date[count % date.length]).fadeIn(400);
+		});
+	  }, 3000);
+		setInterval(function () {
+		$("#temperature").fadeOut(400, function () {
+		  $(this).text(temp[count % temp.length]).fadeIn(400);
+		});
+	  }, 3000);
+		setInterval(function () {
+		$("#description").fadeOut(400, function () {
+		  $(this).text(perfectday[count % temp.length]).fadeIn(400);
+		});
+	  }, 3000);
+      });
+			
+		});
+
+	</script>
+</body>
+</html>

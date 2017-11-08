@@ -1,0 +1,44 @@
+html{
+    background-color: white;
+}
+
+body {
+    width: 50vw;
+	margin: 0px auto;
+    font-family: 'PT Sans', sans-serif;
+	font-size: 20pt;
+    font-weight: bold;
+    color: white;
+    align-content: center;
+    display: block;
+    padding: 100px;
+}
+
+div {
+    width: 20vw;
+    text-align: left;
+    vertical-align: middle;
+    display: block;
+    padding: 20px;
+}
+
+div p {
+    margin: 0;
+}
+
+#change {
+    padding-left: 10px;
+    vertical-align: middle;
+    padding-bottom: 5px;
+    border-bottom: solid 10px;
+    border-bottom-color: white;
+}
+
+#warmest {
+    color: orange;
+}
+
+#coolest {
+    color: blue;
+}
+

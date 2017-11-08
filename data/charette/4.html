@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Charette</title>
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+    <link href="style2.css" rel="stylesheet">
+</head>
+<body>
+	<div id="today">
+		<p><span id="date0"> </span>
+			<br>
+			High: <span id="temperature0"> </span>
+			Low: <span id="temp0"> </span>
+			<br>
+			<span id="cond0"> </span>
+			<br>
+			Humidity: <span id="hum0"> </span>
+		</p>
+		<p><span id="date1"> </span> <br> High: <span id="temperature1"> </span> Low: <span id="temp1"> </span> <br> <span id="cond1"> </span> <br>
+			Humidity: <span id="hum1"> </span></p>
+		<p><span id="date2"> </span> <br> High: <span id="temperature2"> </span> Low: <span id="temp2"> </span> <br> <span id="cond2"> </span><br>
+			Humidity: <span id="hum2"> </span></p>
+		<p><span id="date3"> </span> <br> High: <span id="temperature3"> </span> Low: <span id="temp3"> </span> <br> <span id="cond3"> </span><br>
+			Humidity: <span id="hum3"> </span></p>
+		<p><span id="date4"> </span> <br> High: <span id="temperature4"> </span> Low: <span id="temp4"> </span> <br> <span id="cond4"> </span><br>
+			Humidity: <span id="hum4"> </span></p>
+		<p><span id="date5"> </span> <br> High: <span id="temperature5"> </span> Low: <span id="temp5"> </span> <br> <span id="cond5"> </span><br>
+			Humidity: <span id="hum5"> </span></p>
+		<p><span id="date6"> </span> <br> High: <span id="temperature6"> </span> Low: <span id="temp6"> </span> <br> <span id="cond6"> </span><br>
+			Humidity: <span id="hum6"> </span></p>
+		<p><span id="date7"> </span> <br> High: <span id="temperature7"> </span> Low: <span id="temp7"> </span> <br> <span id="cond7"> </span><br>
+			Humidity: <span id="hum7"> </span></p>
+		<p><span id="date8"> </span> <br> High: <span id="temperature8"> </span> Low: <span id="temp8"> </span> <br> <span id="cond8"> </span><br>
+			Humidity: <span id="hum8"> </span></p>
+		<p><span id="date9"> </span> <br> High: <span id="temperature9"> </span> Low: <span id="temp9"> </span> <br> <span id="cond9"> </span><br>
+			Humidity: <span id="hum9"> </span></p>
+	</div>	
+
+</div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script>
+
+	jQuery(function($){
+
+      var dataUrl = 'https://gist.githubusercontent.com/abesiemsen/916d376e77b659a793d9d8843e3287ee/raw/10-day-forecast.json';
+			
+      jQuery.getJSON(dataUrl, function(forecastData) {
+        
+        //console.log(forecastData);
+
+		var month = forecastData.map(function(day){
+          return day.date.month;
+        });
+		
+		var day = forecastData.map(function(day){
+          return day.date.day;
+        });
+		
+        var year = forecastData.map(function(day){
+          return day.date.year;
+        });
+		
+		var conditions = forecastData.map(function(day){
+          return day.conditions;
+        });
+		
+		var weekday = forecastData.map(function(day){
+          return day.date.weekday;
+        });
+		
+		var monthName = forecastData.map(function(day){
+          return day.date.monthname;
+        });
+		
+		var fahrenheit = forecastData.map(function(day){
+          return day.high.fahrenheit;
+        });
+		
+		var fahrenheitLow = forecastData.map(function(day){
+          return day.low.fahrenheit;
+        });
+		
+		var avehumidity = forecastData.map(function(day){
+          return day.avehumidity;
+        });
+		
+        console.log(month[0]);
+		console.log(monthName[0]);
+
+        console.log(day[0]);
+        console.log(year[0]);
+		console.log(conditions[0]);
+		console.log(weekday[0]);
+		console.log(fahrenheit[0]);
+		
+
+	    var date = [];
+		var temp = [];
+		var tem = [];
+		var tempLow = [];
+		var cond = [];
+		var humidity = [];
+		var i;
+		var count;
+		var c;
+		
+		for (i = 0; i<10; i++) {
+			temp[i] = fahrenheit[i] + "°F";
+			tempLow[i] = fahrenheitLow[i] + "°F";
+			tem[i] = fahrenheit[i];
+			humidity[i] = avehumidity[i];
+			cond[i] = conditions[i];
+			date[i] = monthName[i] + " " + day[i] + ", " + year[i];
+		}
+				
+		for (count = 0; count < 10; count++) {
+			console.log(cond[count]);
+			$("#date" + count).append(date[count % date.length]).fadeIn(400);
+			$("#temperature" + count).append(temp[count % date.length]).fadeIn(400);
+			$("#temp" + count).append(tempLow[count % date.length]).fadeIn(400);
+			$("#cond" + count).append(cond[count % date.length]).fadeIn(400);
+			$("#hum" + count).append(humidity[count % date.length]).fadeIn(400);
+		}
+	
+		
+      });
+			
+		});
+
+	</script>
+</body>
+</html>
+
+

@@ -1,0 +1,44 @@
+{
+  "entrypoints" : [
+    {
+      "name" : "Today is...",
+      "file" : "1.html"
+    },
+    {
+      "name" : "Change background color based on temperature",
+      "file" : "2.html"
+    },
+    {
+      "name" : "Added Condition",
+      "file" : "3.html"
+    },
+    {
+      "name" : "Have all ten days",
+      "file" : "4.html"
+    },
+    {
+      "name" : "Added images",
+      "file" : "5.html"
+    },
+    {
+      "name" : "Warmest and Coolest",
+      "file" : "6.html"
+    },
+    {
+      "name" : "Rotate based on wind degree",
+      "file" : "7.html"
+    },
+    {
+      "name" : "temperature gradient",
+      "file" : "8.html"
+    },
+    {
+      "name" : "Temperature plotting",
+      "file" : "9.html"
+    },
+    {
+      "name" : "Temperature Bar",
+      "file" : "10.html"
+    }
+    ]
+}
