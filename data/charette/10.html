@@ -30,10 +30,10 @@
 	<div id="h">
 		
 	</div>
-		<div id="i">
+	<div id="i">
 		
 	</div>
-		<div id="j">
+	<div id="j">
 		
 	</div>	
 </div>
@@ -105,6 +105,7 @@
 		var windDegree = [];
 		
 		var id = ['a','b','c','d','e','f','g','h','i','j'];
+		[-7y]
 		for (i = 0; i<10; i++) {
 			temp[i] = fahrenheit[i];
 			tempLow[i] = fahrenheitLow[i];
@@ -112,16 +113,17 @@
 			windMph[i] = avewindMph[i] + "mph";
 			date[i] = monthName[i] + " " + day[i] + ", " + year[i];
 		}
+		
 		for (a = 0; a < 10; a++){
 		  $("#" + id[a]).css('top', (temp[a]-40) +'%');
 		  $("#" + id[a]).css('height', (tempLow[a]*2) +'px');
 		    $("#" + id[a]).css('background', 'linear-gradient(rgba('+ temp[a]*2+',' + temp[a] +','+ temp[a] +',1) , rgba('+temp[a]+',0,'+ temp[a]*2 +',1))');
 		}
+		
 		var a;
 		var count = 0;
 		var b;
 			
-	
 		tempDay.sort(function(a, b)
 			{
 				// a and b will here be two objects from the array
