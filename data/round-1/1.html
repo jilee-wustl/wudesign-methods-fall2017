@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Charette</title>
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<div id="today">
+		<p id="change"></p>
+	</div>	
+
+</div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script>
+
+	jQuery(function($){
+
+      var dataUrl = 'spam.json';
+			
+      jQuery.getJSON(dataUrl, function(txt) {
+        
+		var message = txt.map(function(spam){
+          return spam.val1;
+        });
+		
+		console.log(message[0]);
+		
+		var msgArray = [];
+		
+		for (i = 0; i<txt.length; i++) {
+			msgArray[i] = message[i];
+		}
+		
+		count = 0;
+		setInterval(function () {
+			count++;
+		$("#change").fadeOut(500, function () {
+		  $(this).text(msgArray[count % msgArray.length]).fadeIn(500);
+		});
+	  }, 4000);
+      });
+			
+		});
+
+	</script>
+</body>
+</html>
