@@ -17,19 +17,21 @@
 
 	jQuery(function($){
 
-      var dataUrl = 'spam.json';
+      var dataUrl = 'https://raw.githubusercontent.com/jilee-wustl/wudesign-methods-fall2017/master/data/round-1/spam.json';
 			
       jQuery.getJSON(dataUrl, function(txt) {
         
 		var message = txt.map(function(spam){
+		  console.log(spam);
           return spam.val1;
         });
 		
-		console.log(message[0]);
+		console.log(message);
+		console.log(txt);
 		
 		var msgArray = [];
 		
-		for (i = 0; i<txt.length; i++) {
+		for (i = 0; i<message.length; i++) {
 			msgArray[i] = message[i];
 		}
 		

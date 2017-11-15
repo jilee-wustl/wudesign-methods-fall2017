@@ -1,11 +1,11 @@
 {
   "entrypoints" : [
     {
-      "name" : "jeopardy",
+      "name" : "spam",
       "file" : "1.html"
     },
     {
-      "name" : "2",
+      "name" : "jeopardy",
       "file" : "2.html"
     },
     {
