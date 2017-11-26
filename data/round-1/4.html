@@ -27,9 +27,12 @@
 	</script>
 	<script>
 		jQuery(function($){
-			var dataUrl = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson';
+			var dataUrl = 'https://raw.githubusercontent.com/jilee-wustl/wudesign-methods-fall2017/master/data/round-1/example.geojson';
 			$.getJSON(dataUrl, function(data) {
 				console.log(data);
+				//var month = forecastData.map(function(day){
+				//	return day.date.month;
+				//});
 			})
 			
 		});
