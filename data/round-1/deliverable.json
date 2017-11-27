@@ -13,31 +13,31 @@
       "file" : "3.html"
     },
     {
-      "name" : "parsing example data",
+      "name" : "parsing data & adding points",
       "file" : "4.html"
     },
     {
-      "name" : "5",
+      "name" : "changed opacity+radius",
       "file" : "5.html"
     },
     {
-      "name" : "6",
+      "name" : "playing with colors",
       "file" : "6.html"
     },
     {
-      "name" : "7",
+      "name" : "adding heatmap layer with original colors",
       "file" : "7.html"
     },
     {
-      "name" : "8",
+      "name" : "adding heatmap layer with new colors",
       "file" : "8.html"
     },
     {
-      "name" : "9",
+      "name" : "update realtime data every 5 min",
       "file" : "9.html"
     },
     {
-      "name" : "10",
+      "name" : "adding search",
       "file" : "10.html"
     }
     ]

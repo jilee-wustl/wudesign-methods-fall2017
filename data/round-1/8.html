@@ -36,11 +36,68 @@
 
 		map.on('load', function() {
 			//Add a geojson point source.
-			//Heatmap layers also work with a vector tile source.
+
 			map.addSource('earthquakes', {
 				"type": "geojson",
 				"data": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
 			});
+			
+			map.addLayer({
+				"id": "earthquakes-heat",
+				"type": "heatmap",
+				"source": "earthquakes",
+				"maxzoom": 9,
+				"paint": {
+					//Increase the heatmap weight based on frequency and property magnitude
+					"heatmap-weight": {
+						"property": "mag",
+						"type": "exponential",
+						"stops": [
+							[0, 0],
+							[6, 1]
+						]
+					},
+					//Increase the heatmap color weight weight by zoom level
+					//heatmap-ntensity is a multiplier on top of heatmap-weight
+					"heatmap-intensity": {
+						"stops": [
+							[0, 1],
+							[9, 3]
+						]
+					},
+					//Color ramp for heatmap.  Domain is 0 (low) to 1 (high).
+					//Begin color ramp at 0-stop with a 0-transparancy color
+					//to create a blur-like effect.
+					"heatmap-color": [
+						"interpolate",
+						["linear"],
+						["heatmap-density"],
+						0, "rgba(33,102,172,0)",
+						0.25, "rgb(103,169,207)",
+						0.4, "rgb(65,190,95)",
+						0.55, "rgb(253,219,70)",
+						0.65, "rgb(251,114,0)",
+						0.85, "rgb(178,24,43)",
+						1, "rgb(255,79,230)"
+						
+					],
+					//Adjust the heatmap radius by zoom level
+					"heatmap-radius": {
+						"stops": [
+							[0, 2],
+							[9, 60]
+						]
+					},
+					//Transition from heatmap to circle layer by zoom level
+					"heatmap-opacity": {
+						"default": 1,
+						"stops": [
+							[8, 1],
+							[9.3, 0]
+						]
+					},
+				}
+			}, 'waterway-label');
 		
 			map.addLayer({
 				"id": "earthquakes-point",
@@ -54,9 +111,9 @@
 						"type": "exponential",
 						"stops": [
 							[{ zoom: 0, value: 1 }, 1],
-							[{ zoom: 0, value: 6 }, 5],
-							[{ zoom: 13, value: 1 }, 5],
-							[{ zoom: 13, value: 6 }, 50],
+							[{ zoom: 0, value: 6 }, 6],
+							[{ zoom: 9, value: 1 }, 6],
+							[{ zoom: 9, value: 6 }, 60],
 						]
 					},
 					//Color circle by earthquake magnitude
@@ -64,32 +121,28 @@
 						"property": "mag",
 						"type": "exponential",
 						"stops": [
-							[1, "rgba(33,102,172,0)"],
+							[1, "rgb(205,205,205)"],
 							[2, "rgb(103,169,207)"],
-							[3, "rgb(209,229,240)"],
-							[4, "rgb(253,219,199)"],
-							[5, "rgb(239,138,98)"],
-							[6, "rgb(178,24,43)"]
+							[3, "rgb(65,190,95)"],
+							[4, "rgb(253,219,70)"],
+							[5, "rgb(251,114,0)"],
+							[6, "rgb(178,24,43)"],
+							[7, "rgb(255,79,230)"]
 						]
 					},
-					//"circle-stroke-color": "white",
-					//"circle-stroke-width": 1,
-					//Transition from heatmap to circle layer by zoom level
-					//"circle-opacity": {
-					//	"stops": [
-					//		[7, 0],
-					//		[8, 1]
-					//	]
-					//}
+					
+					"circle-opacity": {
+						"stops": [
+							[0, 0],
+							[9, 0],
+							[9.1, 0.4],
+							[13, 0.7]
+						]
+					}
 				}
 			}, 'waterway-label');
 		});
-		jQuery(function($){		
-			var dataUrl = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson';
-			$.getJSON(dataUrl, function(data) {
-				console.log(data);
-			})
-		});
+		
 	</script>
 
 </body>

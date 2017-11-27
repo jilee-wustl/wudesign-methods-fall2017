@@ -36,7 +36,7 @@
 
 		map.on('load', function() {
 			//Add a geojson point source.
-			//Heatmap layers also work with a vector tile source.
+
 			map.addSource('earthquakes', {
 				"type": "geojson",
 				"data": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
@@ -54,9 +54,9 @@
 						"type": "exponential",
 						"stops": [
 							[{ zoom: 0, value: 1 }, 1],
-							[{ zoom: 0, value: 6 }, 5],
-							[{ zoom: 13, value: 1 }, 5],
-							[{ zoom: 13, value: 6 }, 50],
+							[{ zoom: 0, value: 6 }, 6],
+							[{ zoom: 13, value: 1 }, 6],
+							[{ zoom: 13, value: 6 }, 60],
 						]
 					},
 					//Color circle by earthquake magnitude
@@ -69,27 +69,21 @@
 							[3, "rgb(209,229,240)"],
 							[4, "rgb(253,219,199)"],
 							[5, "rgb(239,138,98)"],
-							[6, "rgb(178,24,43)"]
+							[6, "rgb(178,24,43)"],
+							[7, "rgb(140,18,23)"]
 						]
 					},
-					//"circle-stroke-color": "white",
-					//"circle-stroke-width": 1,
-					//Transition from heatmap to circle layer by zoom level
-					//"circle-opacity": {
-					//	"stops": [
-					//		[7, 0],
-					//		[8, 1]
-					//	]
-					//}
+					
+					"circle-opacity": {
+						"stops": [
+							[0, 0.5],
+							[9, 0.7]
+						]
+					}
 				}
 			}, 'waterway-label');
 		});
-		jQuery(function($){		
-			var dataUrl = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson';
-			$.getJSON(dataUrl, function(data) {
-				console.log(data);
-			})
-		});
+		
 	</script>
 
 </body>

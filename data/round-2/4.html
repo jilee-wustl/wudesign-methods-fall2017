@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Charette</title>
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+    <link href="style2.css" rel="stylesheet">
+	<script src='https://api.mapbox.com/mapbox-gl-js/v0.42.0/mapbox-gl.js'></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v0.42.0/mapbox-gl.css' rel='stylesheet' />
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.min.js'></script>
+	<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.css' type='text/css' />
+
+</head>
+<body>
+	<div id='map'></div>
+
+	<script>
+		mapboxgl.accessToken = 'pk.eyJ1IjoiamhsMDkwMyIsImEiOiJjamFnbThvaDUxZmJuMndvMmxuN2hlNmNkIn0.qzz8DTi3L3kYej7YWcLxWw';
+		var map = new mapboxgl.Map({
+			container: 'map',
+			style: 'mapbox://styles/mapbox/dark-v9'
+		});
+		
+		map.addControl(new MapboxGeocoder({
+			accessToken: mapboxgl.accessToken
+		}), 'top-left');
+		
+		map.addControl(new mapboxgl.FullscreenControl());
+		
+		map.addControl(new mapboxgl.GeolocateControl({
+			positionOptions: {
+				enableHighAccuracy: true
+			},
+			trackUserLocation: true,
+			fitBoundsOptions: {
+				maxZoom:9
+			}
+		}));
+		
+		var url = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson';
+
+		map.on('load', function() {
+			//Add a geojson point source.
+
+			window.setInterval(function() {
+				map.getSource('earthquakes').setData(url);
+			}, 300000);
+		
+			map.addSource('earthquakes', { type: 'geojson', data: url });
+			
+			map.addLayer({
+				"id": "earthquakes-heat",
+				"type": "heatmap",
+				"source": "earthquakes",
+				"maxzoom": 9,
+				"paint": {
+					//Increase the heatmap weight based on frequency and property magnitude
+					"heatmap-weight": {
+						"property": "mag",
+						"type": "exponential",
+						"stops": [
+							[0, 0],
+							[6, 1]
+						]
+					},
+					//Increase the heatmap color weight weight by zoom level
+					//heatmap-ntensity is a multiplier on top of heatmap-weight
+					"heatmap-intensity": {
+						"stops": [
+							[0, 1],
+							[9, 3]
+						]
+					},
+					//Color ramp for heatmap.  Domain is 0 (low) to 1 (high).
+					//Begin color ramp at 0-stop with a 0-transparancy color
+					//to create a blur-like effect.
+					"heatmap-color": [
+						"interpolate",
+						["linear"],
+						["heatmap-density"],
+						0, "rgba(33,102,172,0)",
+						0.25, "rgb(103,169,207)",
+						0.4, "rgb(65,190,95)",
+						0.55, "rgb(253,219,70)",
+						0.65, "rgb(251,114,0)",
+						0.85, "rgb(178,24,43)",
+						1, "rgb(255,79,230)"
+						
+					],
+					//Adjust the heatmap radius by zoom level
+					"heatmap-radius": {
+						"stops": [
+							[0, 2],
+							[9, 60]
+						]
+					},
+					//Transition from heatmap to circle layer by zoom level
+					"heatmap-opacity": {
+						"default": 1,
+						"stops": [
+							[8, 1],
+							[9.3, 0]
+						]
+					},
+				}
+			}, 'waterway-label');
+		
+			map.addLayer({
+				"id": "earthquakes-point",
+				"type": "circle",
+				"source": "earthquakes",
+				"minzoom": 0,
+				"paint": {
+					//Size circle raidus by earthquake magnitude and zoom level
+					"circle-radius": {
+						"property": "mag",
+						"type": "exponential",
+						"stops": [
+							[{ zoom: 0, value: 1 }, 1],
+							[{ zoom: 0, value: 6 }, 6],
+							[{ zoom: 9, value: 1 }, 6],
+							[{ zoom: 9, value: 6 }, 60],
+						]
+					},
+					//Color circle by earthquake magnitude
+					"circle-color": {
+						"property": "mag",
+						"type": "exponential",
+						"stops": [
+							[1, "rgb(205,205,205)"],
+							[2, "rgb(103,169,207)"],
+							[3, "rgb(65,190,95)"],
+							[4, "rgb(253,219,70)"],
+							[5, "rgb(251,114,0)"],
+							[6, "rgb(178,24,43)"],
+							[7, "rgb(255,79,230)"]
+						]
+					},
+					
+					"circle-opacity": {
+						"stops": [
+							[0, 0],
+							[9, 0],
+							[9.1, 0.6],
+							[13, 0.7]
+						]
+					}
+				}
+			}, 'waterway-label');
+		
+		
+			map.addLayer({
+				"id": "hover",
+				"type": "circle",
+				"source": "earthquakes",
+				"minzoom": 0,
+				"paint": {
+					//Size circle raidus by earthquake magnitude and zoom level
+					"circle-radius": {
+						"property": "mag",
+						"type": "exponential",
+						"stops": [
+							[{ zoom: 0, value: 1 }, 1],
+							[{ zoom: 0, value: 6 }, 6],
+							[{ zoom: 9, value: 1 }, 6],
+							[{ zoom: 9, value: 6 }, 60],
+						]
+					},
+					//Color circle by earthquake magnitude
+					"circle-color": {
+						"property": "mag",
+						"type": "exponential",
+						"stops": [
+							[1, "rgb(205,205,205)"],
+							[2, "rgb(103,169,207)"],
+							[3, "rgb(65,190,95)"],
+							[4, "rgb(253,219,70)"],
+							[5, "rgb(251,114,0)"],
+							[6, "rgb(178,24,43)"],
+							[7, "rgb(255,79,230)"]
+						]
+					},
+					
+					"circle-opacity": {
+						"stops": [
+							[0, 0],
+							[9, 0],
+							[9.1, 1],
+							[13, 1]
+						]
+					},
+				},
+				"filter": ["==", "title", ""]
+			}, 'waterway-label');
+			
+			// Create a popup, but don't add it to the map yet.
+			var popup = new mapboxgl.Popup({
+				closeButton: false,
+				closeOnClick: false
+			});
+		map.on('zoom', function() {
+			if (map.getZoom() >= 9){
+				map.on("mousemove", "earthquakes-point", function(e) {
+					map.getCanvas().style.cursor = 'pointer';
+					
+					map.setFilter("hover", ["==", "title", e.features[0].properties.title]);
+					//{"type":"Feature",
+					//"properties":
+					//	{
+					//		"mag":4.8,
+					//		"place":"59km ENE of Tadine, New Caledonia",
+					//		"time":1511769263690,
+					//		"updated":1511770198040,
+					//		"tz":660,
+					//		"tsunami":0,
+					//		"sig":354,
+					//		"net":"us",
+					//		"dmin":0.385,
+					//		"rms":1.13,
+					//		"gap":108,
+					//		"magType":"mb",
+					//		"type":"earthquake",
+					//		"title":"M 4.8 - 59km ENE of Tadine, New Caledonia"},
+					//"geometry":
+					//{
+					//	"type":"Point",
+					//	"coordinates":[168.4362,-21.4046,10]},
+					//	"id":"us2000bus2"}
+					popup.setLngLat(e.features[0].geometry.coordinates)
+						.setHTML("Magnitude: " + e.features[0].properties.mag + "<br>" + "Place: " + e.features[0].properties.place + "<br>" +
+								 "Time: " + e.features[0].properties.time + "<br>" + "Type: " + e.features[0].properties.type)
+						.addTo(map);
+				});
+				
+				map.on("mouseleave", "earthquakes-point", function() {
+					map.setFilter("hover", ["==", "title", ""]);
+					
+					map.getCanvas().style.cursor = '';
+					popup.remove();
+				});
+			}
+			else {
+				map.on("mousemove", "earthquakes-point", function() {
+					map.getCanvas().style.cursor = '';
+					popup.remove();
+				});
+				
+				map.on("mouseleave", "earthquakes-point", function() {
+					map.getCanvas().style.cursor = '';
+					popup.remove();
+				});
+			}
+		});
+	});
+		
+	
+	</script>
+
+</body>
+</html>
+
+
+
+
+
+

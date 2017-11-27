@@ -1,0 +1,32 @@
+{
+  "entrypoints" : [
+    {
+      "name" : "search bar moved + full screen added",
+      "file" : "1.html"
+    },
+    {
+      "name" : "added hover effect",
+      "file" : "2.html"
+    },
+    {
+      "name" : "popup when hover",
+      "file" : "3.html"
+    },
+    {
+      "name" : "show more data for popup",
+      "file" : "4.html"
+    },
+    {
+      "name" : "Adding legend",
+      "file" : "5.html"
+    },
+    {
+      "name" : "changing earthquake colors",
+      "file" : "6.html"
+    },
+    {
+      "name" : "adding date range",
+      "file" : "7.html"
+    }
+    ]
+}
