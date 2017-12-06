@@ -57,7 +57,7 @@
 
 <body data-0="background-color: rgb(69,126,139);" data-3000="background-color: rgb(121,164,173);" data-45000="background-color: rgb(121,164,173);" data-47000="background-color: rgb(69,126,139);">
 	<div class="feeling" data-0="background-image: url(feeling.gif); opacity: 1; bottom[cubic]: 0%;" data-3000="bottom[cubic]: 100%; opacity: 0.7;"></div>
-	<div class="feeling" data-47000="background-image: url(ready.gif); opacity: 0;" data-49000="opacity:1;"></div>
+	<div class="feeling" data-47000="background-image: url(ready.gif); opacity: 0;" data-49000="opacity:1;"  data-55000="opacity:1;"></div>
 	<div class="frame" data-0="background-color: rgb(28,50,55);" data-3000="background-color: rgb(43,78,85);" data-45000="background-color: rgb(43,78,85);" data-47000="background-color: rgb(28,50,55);"></div>
 
 	<div class="tray" data-3499="opacity:0;" data-3500="background-image: url(tray.png); opacity:1; bottom[bounce]: 70%;"
@@ -226,10 +226,8 @@
 			inverted: function(p) {
 				return 1 - p;
 			}
-		}
-		
+		},
 		render: function(data) {
-            //Loop
             if(data.curTop === data.maxTop) {
                 this.setScrollTop(0, true);
             }
@@ -238,9 +236,13 @@
 	
 $(document).ready(function(){
 
-    $(window).scroll(function (event) {
-        var top = $(window).scrollTop();
-    });
+	$(window).on("scroll", function() {
+	var scrollHeight = $(document).height();
+	var scrollPosition = $(window).height() + $(window).scrollTop();
+	if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
+	    var top = $(window).scrollTop(0);
+	}
+});
 
 })	
 	</script>
