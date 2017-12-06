@@ -5,7 +5,7 @@
 	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
     <link href="style2.css" rel="stylesheet">
 	<script src='https://api.mapbox.com/mapbox-gl-js/v0.42.0/mapbox-gl.js'></script>
-	<link href='https://api.mapbox.com/mapbox-gl-js/v0.42.0/mapbox-gl.css' rel='stylesheet' />
+	<link href='mapbox-gl.css' rel='stylesheet' />
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 	<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.min.js'></script>
 	<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.css' type='text/css' />
@@ -13,8 +13,6 @@
 </head>
 <body>
 	<div id='map'></div>
-<!--	<nav id='filter-group' class='filter-group'></nav>
--->	<!--<div id='title'><h4>All Earthquakes in Past Month</h4></div>-->
 	<div id='frequency-legend' class='legend'>
 		<h4>Frequency</h4>
 		<div><span style='background-color: rgb(255,79,230)'></span>0.9-1.0</div>
@@ -39,43 +37,7 @@
 
 
 	<script>
-		//var filterGroup = document.getElementById('filter-group');
-		//
-		//for (var i = 0; i < 4; i++){
-		//	var inputId;
-		//	var symbol;
-		//	if (i === 0) {
-		//		inputId = "pastHour";
-		//		symbol = "Past Hour";
-		//	}
-		//	
-		//	else if (i === 1) {
-		//		inputId = "pastDay";
-		//		symbol = "Past Day";
-		//	}
-		//	
-		//	else if (i === 2) {
-		//		inputId = "pastWeek";
-		//		symbol = "Past 7 Days";
-		//	}
-		//	
-		//	else if (i === 3) {
-		//		inputId = "pastMonth";
-		//		symbol = "Past 30 Days";
-		//	}
-		//	
-		//	var input = document.createElement('input');
-		//		input.type = 'radio';
-		//		input.value = inputId;
-		//		input.name = "date";
-		//		filterGroup.appendChild(input);
-		//
-		//	var label = document.createElement('label');
-		//		label.setAttribute('for', inputId);
-		//		label.textContent = symbol;
-		//		filterGroup.appendChild(label);
-		//}
-			
+		
 		mapboxgl.accessToken = 'pk.eyJ1IjoiamhsMDkwMyIsImEiOiJjamFnbThvaDUxZmJuMndvMmxuN2hlNmNkIn0.qzz8DTi3L3kYej7YWcLxWw';
 		var map = new mapboxgl.Map({
 			container: 'map',
@@ -99,31 +61,6 @@
 		}));
 		
 		var url = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson';
-		
-//		input.addEventListener('change', function() {
-//			console.log(input.value);
-//
-//                if(input.value === "pastHour") {
-//					url = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson';
-//					map.getSource('earthquakes').setData(url);
-//				}
-//				
-//				if(input.value === "pastDay") {
-//					url = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson';
-//					map.getSource('earthquakes').setData(url);
-//				}
-//				
-//				if(input.value === "pastWeek") {
-//					url = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson';
-//					map.getSource('earthquakes').setData(url);
-//					console.log(input.value);
-//				}
-//				
-//				if(input.value === "pastMonth") {
-//					url = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson';
-//					map.getSource('earthquakes').setData(url);
-//				}
-//            });
 		
 		map.on('load', function() {
 			//Add a geojson point source.
@@ -327,8 +264,6 @@
 			}
 		});
 	});
-		
-	
 	</script>
 
 </body>

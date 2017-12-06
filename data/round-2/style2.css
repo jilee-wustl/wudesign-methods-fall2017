@@ -6,6 +6,12 @@ body {
 	margin: 0px auto;
 }
 
+#title {
+    color: white;
+    position: absolute;
+    z-index: 9999;
+}
+
 #map {
     position: absolute;
     top: 0;
@@ -15,7 +21,7 @@ body {
 }
 
 .legend {
-    background-color: #fff;
+    background-color: rgba(256,256,256,0.25);
     border-radius: 3px;
     bottom: 30px;
     box-shadow: 0 1px 2px rgba(0,0,0,0.10);
@@ -24,6 +30,7 @@ body {
     position: absolute;
     right: 10px;
     z-index: 1;
+    color: white;
 }
 
 .legend h4 {
@@ -72,6 +79,7 @@ body {
 
 .filter-group input[type=radio] + label:hover,
 
-
-
+.mapboxgl-ctrl mapboxgl-ctrl-attrib {
+    visibility: hidden;
+}
 

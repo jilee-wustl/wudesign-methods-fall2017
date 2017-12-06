@@ -1,0 +1,319 @@
+html{
+    background-color: black;
+}
+
+body {
+    overflow: hidden;
+	margin: 0px auto;
+}
+
+#title {
+    color: white;
+    position: absolute;
+    z-index: 9999;
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+#frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: rgba(0,0,0,0.5);
+    padding: 50px;
+    color: rgba(255,255,255,0.95);
+    font-family: 'din', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+#frame h1 {
+    margin-bottom: 40px;
+    width: 40%;
+    line-height: 45px;
+}
+
+#frame button {
+    margin-top: 50px;
+    padding: 0px;
+    font-size: 16px;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    color: white;
+}
+
+#startover button {
+    margin-top: 0px;
+    padding: 10px;
+    font-size: 12px;
+    z-index: 9999;
+    background-color: white;
+    border: none;
+    color:black;
+    border-radius: 0px;
+}
+
+#startover button:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color:rgb(255,140,0);
+}
+
+.over {
+    border-radius: 3px;
+    bottom: 30px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.10);
+    font: 14px 'Din', sans-serif;
+    padding: 10px;
+    padding-left: 0px;
+    padding-top: 5px;
+    position: absolute;
+    left: 10px;
+    z-index: 1;
+    color: white;
+    display: none;
+}
+
+#frame button:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: rgb(255,140,0);
+}
+
+.frameText {
+    width: 40%;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    line-height: 25px;
+    font-size: 14px;
+}
+
+
+.legend {
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 3px;
+    bottom: 30px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.10);
+    font: 12px/20px 'Din', sans-serif;
+    padding: 10px;
+    position: fixed;
+    right: 10px;
+    z-index: 1;
+    color: rgba(255,255,255,0.8);
+}
+
+.legend h4 {
+    margin: 0 0 10px;
+}
+
+.legend div span {
+    border-radius: 50%;
+    display: inline-block;
+    height: 10px;
+    margin-right: 5px;
+    width: 10px;
+}
+
+.timelegend {
+    border-radius: 3px;
+    top: 15px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.10);
+    font: 16px 'Din', sans-serif;
+    position: absolute;
+    z-index: 1;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    color: white;
+}
+
+.timelegend div span {
+    border-radius: 50%;
+    display: inline-block;
+    height: 10px;
+    margin-right: 5px;
+    width: 10px;
+}
+
+.filter-group {
+    font: 9px/18px;
+    font-family: 'Cabin', sans-serif;
+    font-weight: 400;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+    border-radius: 3px;
+    width: 120px;
+    color: #fff;
+}
+
+.filter-group input[type=radio]:first-child + label {
+    border-radius: 3px 3px 0 0;
+}
+
+.filter-group label:last-child {
+    border-radius: 0 0 3px 3px;
+    border: none;
+}
+
+.filter-group input[type=radio] + label {
+    display: block;
+    cursor: pointer;
+    padding: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.filter-group input[type=radio] + label {
+    text-transform: capitalize;
+}
+
+.filter-group input[type=radio] + label:hover,
+
+.mapboxgl-ctrl.mapboxgl-ctrl-attrib {
+    background-color: rgba(0,0,0,0.5) !important;
+}
+
+.mapboxgl-ctrl.mapboxgl-ctrl-attrib a {
+    color: grey;
+}
+
+.mapboxgl-ctrl-group {
+    background-color: rgba(0,0,0,0.5) !important;
+}
+
+.mapboxgl-ctrl-icon.mapboxgl-ctrl-fullscreen {
+    background-image: url(fullscreen.svg) !important;
+}
+
+.mapboxgl-ctrl-icon.mapboxgl-ctrl-geolocate {
+    background-image: url(location.svg)  !important;    
+}
+
+.mapboxgl-ctrl-geocoder {
+    background-color: rgba(0,0,0,0.5) !important;    
+}
+
+.geocoder-icon-search {
+    background-image: url(search.svg)  !important;    
+}
+
+.geocoder-icon-close {
+    background-image: url(close.svg)  !important;        
+}
+
+.mapboxgl-ctrl-geocoder .geocoder-pin-right *{
+    background-color: rgba(0,0,0,0.5) !important;     
+}
+
+.mapboxgl-ctrl-geocoder input[type='text'] {
+    color: white !important;
+}
+
+.mapboxgl-ctrl-geocoder ul {
+    background-color: rgba(0,0,0,0.3) !important;     
+}
+
+.mapboxgl-ctrl-geocoder a {
+    color: white !important;
+}
+
+.mapboxgl-ctrl-geocoder ul > li.active > a {
+    background-color: rgba(255,255,255,0.3) !important;     
+}
+
+.mapboxgl-ctrl-geocoder ul > li > a:hover {
+    background-color: rgba(255,255,255,0.3) !important;     
+}
+
+.mapboxgl-popup-close-button:hover {
+    background-color: rgba(0,0,0,0) !important;
+}
+
+.mapboxgl-popup-close-button {
+    color: white !important;
+}
+
+.mapboxgl-popup-content {
+    background-color: rgba(0,0,0,0.5) !important;
+    padding: 20px 20px 20px !important;
+    color: white !important;
+    font-family: 'Din', sans-serif;
+}
+
+.mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
+    -webkit-align-self: center;
+    align-self: center;
+    border-top: none;
+    border-bottom-color: rgba(0,0,0,0.5) !important;
+}
+.mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip {
+    -webkit-align-self: flex-start;
+    align-self: flex-start;
+    border-top: none;
+    border-left: none;
+    border-bottom-color: rgba(0,0,0,0.5) !important;
+}
+.mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
+    -webkit-align-self: flex-end;
+    align-self: flex-end;
+    border-top: none;
+    border-right: none;
+    border-bottom-color: rgba(0,0,0,0.5) !important;
+}
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+    -webkit-align-self: center;
+    align-self: center;
+    border-bottom: none;
+    border-top-color: rgba(0,0,0,0.5) !important;
+}
+.mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip {
+    -webkit-align-self: flex-start;
+    align-self: flex-start;
+    border-bottom: none;
+    border-left: none;
+    border-top-color: rgba(0,0,0,0.5) !important;
+}
+.mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
+    -webkit-align-self: flex-end;
+    align-self: flex-end;
+    border-bottom: none;
+    border-right: none;
+    border-top-color: rgba(0,0,0,0.5) !important;
+}
+.mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+    -webkit-align-self: center;
+    align-self: center;
+    border-left: none;
+    border-right-color: rgba(0,0,0,0.5) !important;
+}
+.mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+    -webkit-align-self: center;
+    align-self: center;
+    border-right: none;
+    border-left-color: rgba(0,0,0,0.5) !important;
+}
+
+.mapboxgl-control-container {
+    visibility: hidden;
+}
+
+.mapboxgl-ctrl-icon.mapboxgl-ctrl-shrink {
+    background-image: url(smallscreen.svg) !important;
+}
+
+.geocoder-icon-loading {
+        background-image: url(loading.svg) !important;
+}
+@font-face {
+    font-family: Din;
+    src: url(style/Din.ttf);
+}

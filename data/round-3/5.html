@@ -13,19 +13,18 @@
 </head>
 <body>
 	<div id='map'></div>
-<!--	<nav id='filter-group' class='filter-group'></nav>
--->	<!--<div id='title'><h4>All Earthquakes in Past Month</h4></div>-->
 	<div id='frequency-legend' class='legend'>
 		<h4>Frequency</h4>
-		<div><span style='background-color: rgb(255,79,230)'></span>0.9-1.0</div>
-		<div><span style='background-color: rgb(178,24,43)'></span>0.7-0.9</div>
-		<div><span style='background-color: rgb(251,114,0)'></span>0.5-0.7</div>
-		<div><span style='background-color: rgb(253,219,70)'></span>0.3-0.5</div>
-		<div><span style='background-color: rgb(65,190,95)'></span>0.1-0.3</div>
-		<div><span style='background-color: rgb(103,169,207)'></span>0.0-0.1</div>
+		<div><span style='background-color: rgb(178,24,43)'></span>0.8-1.0</div>
+		<div><span style='background-color: rgb(239,138,98)'></span>0.6-0.8</div>
+		<div><span style='background-color: rgb(253,219,199)'></span>0.4-0.6</div>
+		<div><span style='background-color: rgb(209,229,240)'></span>0.2-0.4</div>
+		<div><span style='background-color: rgb(103,169,207)'></span>0.0-0.2</div>
+		<div id="day"></div>
 	</div>
 	
 	<div id='magnitude-legend' class='legend' style='display: none;'>
+
 		<h4>Magnitude</h4>
 		<div><span style='background-color: rgb(140,18,23)'></span>7.0 or more</div>
 		<div><span style='background-color: rgb(178,24,43)'></span>6.0-7.0</div>
@@ -36,46 +35,9 @@
 		<div><span style='background-color: rgb(42,75,111)'></span>1.0-2.0</div>
 	</div>
 
-
+	<script src="https://d3js.org/d3.v4.min.js"></script>
 
 	<script>
-		//var filterGroup = document.getElementById('filter-group');
-		//
-		//for (var i = 0; i < 4; i++){
-		//	var inputId;
-		//	var symbol;
-		//	if (i === 0) {
-		//		inputId = "pastHour";
-		//		symbol = "Past Hour";
-		//	}
-		//	
-		//	else if (i === 1) {
-		//		inputId = "pastDay";
-		//		symbol = "Past Day";
-		//	}
-		//	
-		//	else if (i === 2) {
-		//		inputId = "pastWeek";
-		//		symbol = "Past 7 Days";
-		//	}
-		//	
-		//	else if (i === 3) {
-		//		inputId = "pastMonth";
-		//		symbol = "Past 30 Days";
-		//	}
-		//	
-		//	var input = document.createElement('input');
-		//		input.type = 'radio';
-		//		input.value = inputId;
-		//		input.name = "date";
-		//		filterGroup.appendChild(input);
-		//
-		//	var label = document.createElement('label');
-		//		label.setAttribute('for', inputId);
-		//		label.textContent = symbol;
-		//		filterGroup.appendChild(label);
-		//}
-			
 		mapboxgl.accessToken = 'pk.eyJ1IjoiamhsMDkwMyIsImEiOiJjamFnbThvaDUxZmJuMndvMmxuN2hlNmNkIn0.qzz8DTi3L3kYej7YWcLxWw';
 		var map = new mapboxgl.Map({
 			container: 'map',
@@ -98,42 +60,63 @@
 			}
 		}));
 		
+		var days = [];
+		for (var i = 0; i < 31; i++) {
+			days[i] = i+1;
+		}
+		var hasThirtyOne = false;
+ 		
 		var url = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson';
+		//var url = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.geojson';
 		
-//		input.addEventListener('change', function() {
-//			console.log(input.value);
-//
-//                if(input.value === "pastHour") {
-//					url = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson';
-//					map.getSource('earthquakes').setData(url);
-//				}
-//				
-//				if(input.value === "pastDay") {
-//					url = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson';
-//					map.getSource('earthquakes').setData(url);
-//				}
-//				
-//				if(input.value === "pastWeek") {
-//					url = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson';
-//					map.getSource('earthquakes').setData(url);
-//					console.log(input.value);
-//				}
-//				
-//				if(input.value === "pastMonth") {
-//					url = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson';
-//					map.getSource('earthquakes').setData(url);
-//				}
-//            });
+		function filterByDay(day) {
+				var filters = ['==', 'day', day];
+				map.setFilter('earthquakes-point', filters);
+				setTimeout(function() {
+					map.setPaintProperty('earthquakes-point', 'circle-opacity', 0.5);
+				}, 200);
+				setTimeout(function() {
+					map.setPaintProperty('earthquakes-point', 'circle-opacity', 0);
+				}, 2000);
+				//map.setPaintProperty('earthquakes-point', 'circle-opacity', 1);
+				//map.setPaintProperty('earthquakes-point', 'circle-opacity', 0);
+
+				// Set the label to the month
+				document.getElementById('day').textContent = day;
+		}
 		
 		map.on('load', function() {
 			//Add a geojson point source.
-			
+
 			window.setInterval(function() {
 				map.getSource('earthquakes').setData(url);
 			}, 300000);
+			
+			d3.json(url, function(err, data) {
+				if (err) throw err;
 		
+				// Create a day property value based on time
+				// used to filter against.
+				var today = new Date ().getDate();
+				console.log(today);
+				
+				data.features = data.features.map(function(d) {
+					d.properties.day = new Date(d.properties.time).getDate();
+					days.push(d.properties.day);
+					
+					if(d.properties.day === 31) {
+						hasThirtyOne = true;
+					}
+					//d.properties.month = new Date(d.properties.time).getMonth();
+					//d.properties.timeFormatted = new Date(d.properties.time).toUTCString();
+					//d.properties.month++;
+					//console.log(d.properties.day + " " + d.properties.month + " " + d.properties.timeFormatted);
+					return d;
+				});
+			
+						
 			map.addSource('earthquakes', { type: 'geojson',
-				data: url
+				data: data
 			});
 			
 			map.addLayer({
@@ -162,33 +145,36 @@
 					//Color ramp for heatmap.  Domain is 0 (low) to 1 (high).
 					//Begin color ramp at 0-stop with a 0-transparancy color
 					//to create a blur-like effect.
+					
 					"heatmap-color": [
 						"interpolate",
 						["linear"],
 						["heatmap-density"],
 						0, "rgba(33,102,172,0)",
-						0.1, "rgb(103,169,207)",
-						0.3, "rgb(65,190,95)",
-						0.5, "rgb(253,219,70)",
-						0.7, "rgb(251,114,0)",
-						0.9, "rgb(178,24,43)",
-						1, "rgb(255,79,230)"
+						0.2, "rgb(103,169,207)",
+						0.4, "rgb(209,229,240)",
+						0.6, "rgb(253,219,199)",
+						0.8, "rgb(239,138,98)",
+						1, "rgb(178,24,43)"
 					],
 					//Adjust the heatmap radius by zoom level
 					"heatmap-radius": {
 						"stops": [
-							[0, 2],
+							[0, 4],
 							[9, 60]
 						]
 					},
 					//Transition from heatmap to circle layer by zoom level
 					"heatmap-opacity": {
-						"default": 1,
+						"default": 0,
 						"stops": [
-							[8, 1],
+							//[8, 1],
 							[9.1, 0]
-						]
+						],
 					},
+					"heatmap-opacity-transition": {
+						duration: 3000
+					}
 				}
 			}, 'waterway-label');
 		
@@ -225,12 +211,16 @@
 					},
 					
 					"circle-opacity": {
+						"default": 0,
 						"stops": [
 							[0, 0],
 							[9, 0],
-							[9.1, 0.6],
-							[13, 0.7]
+							[9.1, 0],
+							[13, 0]
 						]
+					},
+					"circle-opacity-transition": {
+						duration: 1000
 					}
 				}
 			}, 'waterway-label');
@@ -279,6 +269,10 @@
 				"filter": ["==", "title", ""]
 			}, 'waterway-label');
 			
+			//setInterval(function() {
+			//	map.setPaintProperty('earthquakes-heat', 'heatmap-opacity', 1);
+			//}, 5000);
+			
 			// Create a popup, but don't add it to the map yet.
 			var popup = new mapboxgl.Popup({
 				closeButton: false,
@@ -326,8 +320,46 @@
 				});
 			}
 		});
-	});
 		
+		var todayCount = today;
+		var hasRun = false;
+		var animation;
+		
+		//setTimeout(function(){
+			var animation = setInterval(function() { playDays(); }, 4000);
+		//}, 2000);
+		
+		function playDays() {
+			if (hasThirtyOne) {
+				if (today === 32) {
+				today = 1;
+				}
+			}
+			else {
+				if (today === 31) {
+				today = 1;
+				}
+			}
+			
+			if (hasRun & today+1 === todayCount) {
+				endAnimation();
+			}
+			
+			filterByDay(days[today-1]);
+			//map.setPaintProperty('earthquakes-point', 'circle-opacity', 0);
+			hasRun = true;
+			today++;
+		}
+		
+		function endAnimation() {
+			clearInterval(animation);
+			setTimeout(function() {
+				map.setPaintProperty('earthquakes-point', 'circle-opacity', 0);
+			}, 2000);
+		}
+			
+	});
+	});		
 	
 	</script>
 

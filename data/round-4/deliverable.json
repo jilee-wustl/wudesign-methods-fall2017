@@ -1,36 +1,44 @@
 {
   "entrypoints" : [
     {
-      "name" : "search bar moved + full screen added",
+      "name" : "fixing popup",
       "file" : "1.html"
     },
     {
-      "name" : "added hover effect",
+      "name" : "fixing loading",
       "file" : "2.html"
     },
     {
-      "name" : "popup when hover",
+      "name" : "fixing start over",
       "file" : "3.html"
     },
     {
-      "name" : "show more data for popup",
+      "name" : "",
       "file" : "4.html"
     },
     {
-      "name" : "Adding legend",
+      "name" : "",
       "file" : "5.html"
     },
     {
-      "name" : "changing earthquake colors",
+      "name" : "",
       "file" : "6.html"
     },
     {
-      "name" : "adding options",
+      "name" : "",
       "file" : "7.html"
     },
     {
-      "name" : "fixing styles",
+      "name" : "",
       "file" : "8.html"
+    },
+    {
+      "name" : "",
+      "file" : "9.html"
+    },
+    {
+      "name" : "",
+      "file" : "10.html"
     }
     ]
 }

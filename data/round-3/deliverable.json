@@ -1,0 +1,44 @@
+{
+  "entrypoints" : [
+    {
+      "name" : "loading layer after 5 sec",
+      "file" : "1.html"
+    },
+    {
+      "name" : "showing each day",
+      "file" : "2.html"
+    },
+    {
+      "name" : "starting today",
+      "file" : "3.html"
+    },
+    {
+      "name" : "time regular/blinking",
+      "file" : "4.html"
+    },
+    {
+      "name" : "time slow",
+      "file" : "5.html"
+    },
+    {
+      "name" : "time fast & displays all day",
+      "file" : "6.html"
+    },
+    {
+      "name" : "fixed opacity",
+      "file" : "7.html"
+    },
+    {
+      "name" : "fixed popup",
+      "file" : "8.html"
+    },
+    {
+      "name" : "fixed style",
+      "file" : "9.html"
+    },
+    {
+      "name" : "time display",
+      "file" : "10.html"
+    }
+    ]
+}

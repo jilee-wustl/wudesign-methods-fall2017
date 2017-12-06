@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Charette</title>
+	<link href="https://fonts.googleapis.com/css?family=Overpass+Mono" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Abel|Cabin" rel="stylesheet">
+
+    <link href="style2.css" rel="stylesheet">
+	<script src='https://api.mapbox.com/mapbox-gl-js/v0.42.0/mapbox-gl.js'></script>
+	<link href='mapbox-gl.css' rel='stylesheet' />
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.min.js'></script>
+	<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.css' type='text/css' />
+
+</head>
+<body>
+	<div id="frame">
+		<h1> Visualization of All Earthquakes Over The Past 30 Days</h1>
+		<div class="frameText"> This website uses USGS's real-time earthquake data to display latest earthquakes all over the world. You can go to any location to see all earthquakes in that area. Zoom in and click the circle to see more information.</div>
+		<div class="frameText">Updated every 15 minutes.</div>
+		<button id="description" class="start">Start &#8594;</button>
+	</div>
+	<div id='map'></div>
+	<div id="day" class='timelegend'></div>
+	<div id="startover" class='over'><button class="start">Start Over</button></div>
+
+	<div id='frequency-legend' class='legend' style='visibility: hidden'>
+		<h4 style="font-weight: bold">Frequency</h4>
+		<div><span style='background-color: rgb(178,24,43)'></span>0.8-1.0</div>
+		<div><span style='background-color: rgb(239,138,98)'></span>0.6-0.8</div>
+		<div><span style='background-color: rgb(253,219,199)'></span>0.4-0.6</div>
+		<div><span style='background-color: rgb(209,229,240)'></span>0.2-0.4</div>
+		<div><span style='background-color: rgb(103,169,207)'></span>0.0-0.2</div>
+	</div>
+	
+	<div id='magnitude-legend' class='legend' style='display: none;'>
+
+		<h4>Magnitude</h4>
+		<div><span style='background-color: rgb(140,18,23)'></span>7.0 or more</div>
+		<div><span style='background-color: rgb(178,24,43)'></span>6.0-7.0</div>
+		<div><span style='background-color: rgb(239,138,98)'></span>5.0-6.0</div>
+		<div><span style='background-color: rgb(253,219,199)'></span>4.0-5.0</div>
+		<div><span style='background-color: rgb(209,229,240)'></span>3.0-4.0</div>
+		<div><span style='background-color: rgb(103,169,207)'></span>2.0-3.0</div>
+		<div><span style='background-color: rgb(42,75,111)'></span>1.0-2.0</div>
+	</div>
+
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src='moment.js'></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<script>
+		var buttonClicked = false;
+				var mapload = false;
+	
+		mapboxgl.accessToken = 'pk.eyJ1IjoiamhsMDkwMyIsImEiOiJjamFnbThvaDUxZmJuMndvMmxuN2hlNmNkIn0.qzz8DTi3L3kYej7YWcLxWw';
+		var map = new mapboxgl.Map({
+			container: 'map',
+			style: 'mapbox://styles/mapbox/dark-v9',
+			attributionControl: false
+		});
+		
+		map.addControl(new mapboxgl.AttributionControl(), 'bottom-right');
+		
+		map.addControl(new MapboxGeocoder({
+			accessToken: mapboxgl.accessToken
+		}), 'top-left');
+		
+		map.addControl(new mapboxgl.FullscreenControl());
+		
+		map.addControl(new mapboxgl.GeolocateControl({
+			positionOptions: {
+				enableHighAccuracy: true
+			},
+			trackUserLocation: true,
+			fitBoundsOptions: {
+				maxZoom:9
+			}
+		}));
+		var momentCount = 30;
+
+		var done = false;
+		var days = [];
+		for (var i = 0; i < 31; i++) {
+			days[i] = i+1;
+		}
+ 		
+		var url = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson';
+		
+		moment().format('l');
+		var dateDisplayFormat;
+		
+		function filterByDay(day) {
+				var filters = ['==', 'day', day];
+				map.setFilter('earthquakes-point', filters);
+				setTimeout(function() {
+					map.setPaintProperty('earthquakes-point', 'circle-opacity', 0.5);
+				}, 300);
+				//map.setPaintProperty('earthquakes-point', 'circle-opacity', 1);
+				//map.setPaintProperty('earthquakes-point', 'circle-opacity', 0);
+				document.getElementById('day').textContent = dateDisplayFormat;
+				//console.log("showing " + day);
+				if (done) {
+					var filter = ['>', 'mag', 0];
+					document.getElementById('day').textContent = "All earthquakes past 30 days";
+					map.setFilter('earthquakes-point', filter);
+					setTimeout(function() {
+					map.setPaintProperty('earthquakes-point', 'circle-opacity', 0.5);
+				}, 1000);
+				}
+				// Set the label to the month
+		}
+		
+		
+		map.on('load', function() {
+			//Add a geojson point source.
+
+			//window.setInterval(function() {
+			//	map.getSource('earthquakes').setData(url);
+			//}, 300000);
+			
+			d3.json(url, function(err, data) {
+				if (err) throw err;
+		
+				// Create a day property value based on time
+				// used to filter against.
+				var today = new Date ().getDate();
+				
+				data.features = data.features.map(function(d) {
+					var timeMillis = moment(d.properties.time).calendar();
+					d.properties.day = timeMillis;
+					days.push(d.properties.day);
+				
+					d.properties.timeFormatted = new Date(d.properties.time).toUTCString();
+
+					return d;
+				});
+						
+			map.addSource('earthquakes', { type: 'geojson',
+				data: data
+			});
+			
+			map.addLayer({
+				"id": "earthquakes-heat",
+				"type": "heatmap",
+				"source": "earthquakes",
+				"maxzoom": 9,
+				"paint": {
+					//Increase the heatmap weight based on frequency and property magnitude
+					"heatmap-weight": {
+						"property": "mag",
+						"type": "exponential",
+						"stops": [
+							[0, 0],
+							[6, 1]
+						]
+					},
+					//Increase the heatmap color weight weight by zoom level
+					//heatmap-ntensity is a multiplier on top of heatmap-weight
+					"heatmap-intensity": {
+						"stops": [
+							[0, 1],
+							[9, 3]
+						]
+					},
+					//Color ramp for heatmap.  Domain is 0 (low) to 1 (high).
+					//Begin color ramp at 0-stop with a 0-transparancy color
+					//to create a blur-like effect.
+					
+					"heatmap-color": [
+						"interpolate",
+						["linear"],
+						["heatmap-density"],
+						0, "rgba(33,102,172,0)",
+						0.2, "rgb(103,169,207)",
+						0.4, "rgb(209,229,240)",
+						0.6, "rgb(253,219,199)",
+						0.8, "rgb(239,138,98)",
+						1, "rgb(178,24,43)"
+					],
+					//Adjust the heatmap radius by zoom level
+					"heatmap-radius": {
+						"stops": [
+							[0, 4],
+							[9, 60]
+						]
+					},
+					//Transition from heatmap to circle layer by zoom level
+					"heatmap-opacity": {
+						"default": 0,
+						"stops": [
+							[0, 0],
+							[9, 0],
+							[9.1, 0],
+							[13, 0]
+						]
+					},
+					"heatmap-opacity-transition": {
+						duration: 3000
+					}
+				}
+			}, 'waterway-label');
+		
+			map.addLayer({
+				"id": "earthquakes-point",
+				"type": "circle",
+				"source": "earthquakes",
+				"minzoom": 0,
+				"paint": {
+					//Size circle raidus by earthquake magnitude and zoom level
+					"circle-radius": {
+						"property": "mag",
+						"type": "exponential",
+						"stops": [
+							[{ zoom: 0, value: 1 }, 1],
+							[{ zoom: 0, value: 6 }, 6],
+							[{ zoom: 9, value: 1 }, 6],
+							[{ zoom: 9, value: 6 }, 60],
+						]
+					},
+					//Color circle by earthquake magnitude
+					"circle-color": {
+						"property": "mag",
+						"type": "exponential",
+						"stops": [
+							[1, "rgba(33,102,172,0.5)"],
+							[2, "rgb(103,169,207)"],
+							[3, "rgb(209,229,240)"],
+							[4, "rgb(253,219,199)"],
+							[5, "rgb(239,138,98)"],
+							[6, "rgb(178,24,43)"],
+							[7, "rgb(140,18,23)"]
+						]
+					},
+					
+					"circle-opacity": {
+						"default": 0,
+						"stops": [
+							[0, 0],
+							[9, 0],
+							[9.1, 1],
+							[13, 1]
+						]
+					}/*,
+					"circle-opacity-transition": {
+						duration: 200
+					}*/
+				}
+			}, 'waterway-label');
+		
+			map.addLayer({
+				"id": "hover",
+				"type": "circle",
+				"source": "earthquakes",
+				"minzoom": 0,
+				"paint": {
+					//Size circle raidus by earthquake magnitude and zoom level
+					"circle-radius": {
+						"property": "mag",
+						"type": "exponential",
+						"stops": [
+							[{ zoom: 0, value: 1 }, 1],
+							[{ zoom: 0, value: 6 }, 6],
+							[{ zoom: 9, value: 1 }, 6],
+							[{ zoom: 9, value: 6 }, 60],
+						]
+					},
+					//Color circle by earthquake magnitude
+					"circle-color": {
+						"property": "mag",
+						"type": "exponential",
+						"stops": [
+							[1, "rgba(33,102,172,0.5)"],
+							[2, "rgb(103,169,207)"],
+							[3, "rgb(209,229,240)"],
+							[4, "rgb(253,219,199)"],
+							[5, "rgb(239,138,98)"],
+							[6, "rgb(178,24,43)"],
+							[7, "rgb(140,18,23)"]
+						]
+					},
+					
+					"circle-opacity": {
+						"stops": [
+							[0, 0],
+							[9, 0],
+							[9.1, 1],
+							[13, 1]
+						]
+					},
+				},
+				"filter": ["==", "title", ""]
+			}, 'waterway-label');
+			
+			// Create a popup, but don't add it to the map yet.
+			var popup = new mapboxgl.Popup({
+				closeButton: true,
+				closeOnClick: false
+			});
+		
+		var zoomChange = 9;
+		var freqLegend = document.getElementById('frequency-legend');
+		var magLegend = document.getElementById('magnitude-legend');
+		
+		map.on('zoom', function() {
+			if (map.getZoom() >= zoomChange & done){
+				map.setPaintProperty('earthquakes-point', 'circle-opacity', 0.5);
+				map.setPaintProperty('earthquakes-heat', 'heatmap-opacity', 0);
+
+				freqLegend.style.display = 'none';
+				magLegend.style.display = 'block';
+		
+				map.on("mousemove", "earthquakes-point", function(e) {
+					map.getCanvas().style.cursor = 'pointer';
+					
+					map.setFilter("hover", ["==", "title", e.features[0].properties.title]);
+					//popup.setLngLat(e.features[0].geometry.coordinates)
+					//	.setHTML("Magnitude: " + e.features[0].properties.mag + "<br>" + "Place: " + e.features[0].properties.place + "<br>" +
+					//			 "Time: " + e.features[0].properties.time + "<br>" + "Type: " + e.features[0].properties.type)
+					//	.addTo(map);
+				});
+				
+				map.on("mouseleave", "earthquakes-point", function() {
+					map.setFilter("hover", ["==", "title", ""]);
+					
+					map.getCanvas().style.cursor = '';
+					//popup.remove();
+				});
+				
+				map.on("click", "hover", function(e) {
+					map.setFilter("hover", ["==", "title", ""]);
+					
+					map.getCanvas().style.cursor = '';
+					popup.setLngLat(e.features[0].geometry.coordinates)
+						.setHTML(
+							"Time: " + e.features[0].properties.timeFormatted + "<br>" +
+							"Magnitude: " + e.features[0].properties.mag + "<br>"+ "Place: " + e.features[0].properties.place)
+						.addTo(map);
+				});
+			}
+			else {
+				freqLegend.style.display = 'block';
+				magLegend.style.display = 'none';
+				
+				map.on("click", "hover", function() {					
+					map.getCanvas().style.cursor = '';
+					popup.remove();
+				});
+				
+				map.setPaintProperty('earthquakes-point', 'circle-opacity', 0);
+				map.setPaintProperty('earthquakes-heat', 'heatmap-opacity', 1);
+				
+				map.on("mousemove", "earthquakes-point", function() {
+					map.getCanvas().style.cursor = '';
+				});
+				
+				map.on("mouseleave", "earthquakes-point", function() {
+					map.getCanvas().style.cursor = '';
+					//popup.remove();
+				});
+			}
+		});
+		
+	});
+			
+		
+		if(map.loaded()) {
+			mapload = true;
+			check();
+		}
+		
+		});
+		
+					var todayMoment = moment().calendar();
+
+	var animation;
+		
+		function playDays() {
+			if (dateDisplayFormat === todayMoment) {
+				endAnimation();
+			}
+			else{
+			dateDisplayFormat = moment().subtract(momentCount, 'days').calendar();
+
+			filterByDay(dateDisplayFormat);
+			momentCount--;
+
+			//map.setPaintProperty('earthquakes-point', 'circle-opacity', 0);
+		
+			}
+			
+		}
+		
+		function endAnimation() {
+			clearInterval(animation);
+
+			//setTimeout(function() {
+			//	map.setPaintProperty('earthquakes-point', 'circle-opacity', 0);
+			//}, 1000);
+			done = true;
+			var className = document.getElementsByClassName("mapboxgl-control-container");
+			var legend = document.getElementById("frequency-legend");
+			var timedisplay = document.getElementsByClassName("timelegend");
+			console.log(className);
+			
+			setTimeout(function() {
+				className[0].style.visibility = "visible";
+				legend.style.visibility = "visible";
+				timedisplay[0].style.visibility = "hidden";
+				}, 4000);
+			filterByDay(days[0]);
+		}
+		
+		function check() {
+			if(mapload & buttonClicked) {
+			setTimeout(function() {
+				animation = setInterval(function() { playDays(); }, 500);
+			}, 1200);
+			setTimeout(function() {
+					map.setPaintProperty('earthquakes-heat', 'heatmap-opacity', 1);
+					map.setPaintProperty('earthquakes-point', 'circle-opacity', 0);
+			}, 20000);
+			}
+		}
+		
+		$(document).ready(function(){
+			$( "#description" ).click(function() {
+				buttonClicked = true;
+				console.log(buttonClicked);
+				check();
+				$("#frame").fadeOut(1700);
+				setTimeout(function() {
+				$(".over").fadeIn(500);
+			}, 21000);
+			});
+		});
+	</script>
+
+</body>
+</html>
+
+
+
+
+
+
