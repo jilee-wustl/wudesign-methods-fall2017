@@ -48,6 +48,7 @@ body {
     background-color: rgba(0,0,0,0);
     border: none;
     color: white;
+    font-family: 'Gidole-Regular', sans-serif;
 }
 
 #startover button {
@@ -59,6 +60,7 @@ body {
     border: none;
     color:black;
     border-radius: 0px;
+    font-family: 'Gidole-Regular', sans-serif;
 }
 
 #startover button:hover {
