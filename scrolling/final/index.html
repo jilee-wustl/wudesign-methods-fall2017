@@ -234,17 +234,16 @@
         }
 	});
 	
-$(document).ready(function(){
-
-	$(window).on("scroll", function() {
-	var scrollHeight = $(document).height();
-	var scrollPosition = $(window).height() + $(window).scrollTop();
-	if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
-	    var top = $(window).scrollTop(0);
-	}
-});
-
-})	
+	$(document).ready(function(){
+		$(window).on("scroll", function() {
+		var scrollHeight = $(document).height();
+		var scrollPosition = $(window).height() + $(window).scrollTop();
+		if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
+			var top = $(window).scrollTop(0);
+		}
+	});
+	
+	});	
 	</script>
 </body>
 </body>
